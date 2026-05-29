@@ -2250,10 +2250,6 @@ tr:hover td   { background:rgba(124,109,255,.03) !important; }
 
   <div class="sb-section">
     <div class="sb-section-label">Team</div>
-    <div class="sb-item" onclick="switchSection('artists',this)">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="3"/><path d="M1 14c0-3 2-5 5-5s5 2 5 5"/><circle cx="12" cy="6" r="2"/><path d="M15 14c0-2-1.5-3.5-3-4"/></svg>
-      Artists
-    </div>
     <div class="sb-item" onclick="switchSection('workload',this)">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="3" height="10" rx="1"/><rect x="6" y="1" width="3" height="13" rx="1"/><rect x="11" y="6" width="3" height="8" rx="1"/></svg>
       Workload
@@ -8935,8 +8931,10 @@ function renderArtistCards() {
 }
 
 function renderLeaderboard() {
+  const lbBody = document.getElementById('lbBody');
+  if (!lbBody) return;
   const sorted = [...artistData].sort((a,b)=>b.perf-a.perf);
-  document.getElementById('lbBody').innerHTML = sorted.map((a,i)=>{
+  lbBody.innerHTML = sorted.map((a,i)=>{
     const wc = a.load>85?'#ff6b6b':a.load>70?'#f59e0b':'#00c896';
     const bc = a.load>85?'b-coral':a.load>70?'b-amber':'b-teal';
     const rnkColor = i<3?'#f59e0b':'var(--muted2)';
@@ -9622,7 +9620,7 @@ function renderPinnedFolders() {
 }
 
 // ── DRIVE: localStorage persistence ──────────────────────────
-const DRIVE_STORAGE_KEY = 'vstudio_drive_links';
+var DRIVE_STORAGE_KEY = 'vstudio_drive_links';
 let driveEditIdx = null;
 let driveDeleteIdx = null;
 
@@ -10745,7 +10743,7 @@ renderAmenArtistGrid();
 
 
 // ═══ LOGO CHANGE SYSTEM ═════════════════════════════════════════
-const LOGO_STORAGE_KEY = 'vstudio_custom_logo';
+var LOGO_STORAGE_KEY = 'vstudio_custom_logo';
 let pendingLogoData = null;
 
 // ── Init: restore saved logo on page load ──
@@ -11056,7 +11054,7 @@ function handleVikasTeamPhoto(event, artistName, avId) {
 // ARTIST MANAGEMENT SYSTEM
 // ═══════════════════════════════════════════════════════════════
 
-const AM_STORAGE_KEY = 'vstudio_artist_roster';
+var AM_STORAGE_KEY = 'vstudio_artist_roster';
 
 // Colour palettes per category
 const AM_COLORS = {
@@ -11501,7 +11499,7 @@ function showAmToast(msg, color) {
 // ARBAZ / VIKAS TEAM MANAGE
 // ═══════════════════════════════════════════════════════════════
 
-const TEAM_STORAGE_KEY = 'vstudio_team_roster';
+var TEAM_STORAGE_KEY = 'vstudio_team_roster';
 
 // Arbaz's base artists (from CSV)
 const ARBAZ_BASE = ['Akhtar','Piyush','Danish','Hamza','Faraz','Sahzad','Shahzad','Nawab','Priyanshu','Fraz'];
@@ -11860,7 +11858,7 @@ function executeTabRemove() {
 // ═══════════════════════════════════════════════════════════════
 
 // ═══ INLINE STATUS EDITOR ═══════════════════════════════════════
-const STATUS_STORAGE_KEY = 'vstudio_status_edits';
+var STATUS_STORAGE_KEY = 'vstudio_status_edits';
 
 // Load saved status changes
 function loadStatusEdits() {
@@ -11933,7 +11931,7 @@ setTimeout(applyStatusEdits, 400);
 // ═══════════════════════════════════════════════════════════════
 // REFERENCES SYSTEM — Exterior / Interior / Amenities
 // ═══════════════════════════════════════════════════════════════
-const REF_KEY = 'vstudio_refs';
+var REF_KEY = 'vstudio_refs';
 let refData = { exterior: [], interior: [], amenities: [] };
 let refFilter = { exterior: 'All', interior: 'All', amenities: 'All' };
 let refImgData = { exterior: null, interior: null, amenities: null };
@@ -12106,7 +12104,7 @@ const AG_CREDS = {
 // Viewer-only permissions (disable sensitive tabs)
 const AG_VIEWER_HIDE = ['artist-manage','settings','bd'];
 
-const AG_SESSION_KEY = 'vstudio_admin_session';
+var AG_SESSION_KEY = 'vstudio_admin_session';
 let agCurrentRole = 'admin';
 
 // ── Check if already logged in (session persists across refresh) ─
@@ -12603,7 +12601,7 @@ function showGoogleSetupInfo() {
 // ═══════════════════════════════════════════════════════════════
 // GOOGLE SHEET LINK SYSTEM
 // ═══════════════════════════════════════════════════════════════
-const GSHEET_KEY = 'vstudio_gsheet_links';
+var GSHEET_KEY = 'vstudio_gsheet_links';
 
 // ── Load saved links on page load ────────────────────────────
 (function loadGsheetLinks() {
@@ -12761,7 +12759,7 @@ function clearGsheetLink(cat) {
 // ═══════════════════════════════════════════════════════════════
 // ADD NEW PROJECT SYSTEM
 // ═══════════════════════════════════════════════════════════════
-const NP_KEY = 'vstudio_projects_added';
+var NP_KEY = 'vstudio_projects_added';
 let npCurrentDept = 'ext';
 
 function openNewProject() {
@@ -12953,7 +12951,7 @@ function npUpdateOverviewCounts(project) {
 // ═══════════════════════════════════════════════════════════════
 // GOOGLE SHEET SYNC — Direct URL (GAS Web App)
 // ═══════════════════════════════════════════════════════════════
-const GS_SYNC_KEY = 'vstudio_sync_cache';
+var GS_SYNC_KEY = 'vstudio_sync_cache';
 let gsSyncCat    = null;
 let gsSyncParsed = null;
 
@@ -12992,7 +12990,7 @@ async
 // EXTERIOR TAB — DEDICATED GOOGLE SHEET SYNC PANEL FUNCTIONS
 // ═══════════════════════════════════════════════════════════════
 
-const EXT_SYNC_OPEN_KEY = 'vstudio_ext_sync_open';
+var EXT_SYNC_OPEN_KEY = 'vstudio_ext_sync_open';
 
 function extSyncToggle() {
   const body = document.getElementById('extSyncBody');
@@ -13290,8 +13288,8 @@ function extClearLog() {
 // Tracks AI tools, automation workflows, innovation initiatives
 // ═══════════════════════════════════════════════════════════════
 
-const AII_STORAGE_KEY = 'vstudio_ai_innovation';
-let aiiCurrentDept = 'all';
+var AII_STORAGE_KEY = 'vstudio_ai_innovation';
+var aiiCurrentDept = 'all';
 
 // Default seed data - real, plausible AI initiatives
 const AII_DEFAULT_DATA = [
@@ -13747,11 +13745,11 @@ function aiInnoExport() {
 // Real-time sync, workflow automation monitoring, live dashboards
 // ═══════════════════════════════════════════════════════════════
 
-const AII_SYNC_CFG_KEY = 'vstudio_aii_sync_cfg';
-const AII_LAST_SYNC_KEY = 'vstudio_aii_lastsync';
-const AII_TICKER_KEY = 'vstudio_aii_ticker';
-let aiiAutoRefreshTimer = null;
-let aiiIsSyncing = false;
+var AII_SYNC_CFG_KEY = 'vstudio_aii_sync_cfg';
+var AII_LAST_SYNC_KEY = 'vstudio_aii_lastsync';
+var AII_TICKER_KEY = 'vstudio_aii_ticker';
+var aiiAutoRefreshTimer = null;
+var aiiIsSyncing = false;
 
 // ── Config management ─────────────────────────────────────────
 function aiInnoGetSyncCfg() {
@@ -14335,14 +14333,14 @@ document.addEventListener('DOMContentLoaded', () => setTimeout(updateInteriorSyn
 // Real-time two-way sync with Google Sheets via Apps Script Web App
 // ═══════════════════════════════════════════════════════════════
 
-const SH_CONFIG_KEY = 'vstudio_sh_config';
-const SH_AUTO_KEY   = 'vstudio_sh_auto';
-const SH_WRITE_KEY  = 'vstudio_sh_write';
-const SH_LOG_KEY    = 'vstudio_sh_log';
-const SH_LAST_KEY   = 'vstudio_sh_lastsync';
+var SH_CONFIG_KEY = 'vstudio_sh_config';
+var SH_AUTO_KEY   = 'vstudio_sh_auto';
+var SH_WRITE_KEY  = 'vstudio_sh_write';
+var SH_LOG_KEY    = 'vstudio_sh_log';
+var SH_LAST_KEY   = 'vstudio_sh_lastsync';
 
-let shAutoTimer = null;
-let shIsSyncing = false;
+var shAutoTimer = null;
+var shIsSyncing = false;
 
 // ── Get / Save config ─────────────────────────────────────────
 function shGetConfig() {
@@ -15844,7 +15842,7 @@ function gsGASScript() {
 // ═══════════════════════════════════════════════════════════════
 // SYNC CENTER — Master sync engine
 // ═══════════════════════════════════════════════════════════════
-const SYNC_LOG_KEY = 'vstudio_sync_log';
+var SYNC_LOG_KEY = 'vstudio_sync_log';
 let syncInProgress = false;
 
 // ── Update the cards on the Sync Center pane ─────────────────
@@ -16340,7 +16338,7 @@ function gsDynamicRebuildOnSync(cat, rows) {
 // ARTIST UNIFIED SYNC — extracts artists from project sheets
 // Uses sheet URLs already saved by project tabs (getGsheetLinks)
 // ═══════════════════════════════════════════════════════════════
-const ARTIST_U_DATA_KEY = 'vstudio_artist_unified_data';
+var ARTIST_U_DATA_KEY = 'vstudio_artist_unified_data';
 let artistUCurrentCat = 'exterior';
 
 function artistUGetData() {

@@ -12984,8 +12984,6 @@ const GS_COL_MAP = {
   },
 };
 
-// ── Entry point — called by Sync button ──────────────────────
-async 
 // ═══════════════════════════════════════════════════════════════
 // EXTERIOR TAB — DEDICATED GOOGLE SHEET SYNC PANEL FUNCTIONS
 // ═══════════════════════════════════════════════════════════════
@@ -13292,7 +13290,7 @@ var AII_STORAGE_KEY = 'vstudio_ai_innovation';
 var aiiCurrentDept = 'all';
 
 // Default seed data - real, plausible AI initiatives
-const AII_DEFAULT_DATA = [
+var AII_DEFAULT_DATA = [
   { id:'AII-001', name:'Stable Diffusion render upscaling', dept:'Exterior', category:'AI Tool', tool:'Stable Diffusion XL + Magnific', owner:'Arbaz', status:'WIP', progress:65, impact:'High', notes:'Replaces post-render upscale step. Saving 2-3 hrs per delivery.', updated:'2026-05-18' },
   { id:'AII-002', name:'AI-powered material library', dept:'Exterior', category:'AI Tool', tool:'Adobe Firefly + Substance', owner:'Mayank', status:'Done', progress:100, impact:'High', notes:'Custom material generation from text prompts. Integrated into V-Ray.', updated:'2026-04-22' },
   { id:'AII-003', name:'Auto-camera angle optimizer', dept:'Exterior', category:'Custom Script', tool:'Python + OpenCV', owner:'Vikas', status:'WIP', progress:45, impact:'Medium', notes:'Analyzes building geometry to suggest hero shot angles. Beta testing.', updated:'2026-05-15' },
@@ -13769,7 +13767,10 @@ function aiInnoAddTicker(type, msg) {
   const entry = { ts:ts, type:type, msg:msg, at:Date.now() };
 
   let log = [];
-  try { log = JSON.parse(localStorage.getItem(AII_TICKER_KEY) || '[]'); } catch(e) {}
+  try { 
+    const parsed = JSON.parse(localStorage.getItem(AII_TICKER_KEY) || '[]');
+    log = Array.isArray(parsed) ? parsed : [];
+  } catch(e) { log = []; }
   log.unshift(entry);
   if (log.length > 50) log = log.slice(0, 50);
   localStorage.setItem(AII_TICKER_KEY, JSON.stringify(log));
@@ -14360,7 +14361,10 @@ function shLog(type, msg) {
 
   // Save to localStorage (max 100 entries)
   let log = [];
-  try { log = JSON.parse(localStorage.getItem(SH_LOG_KEY) || '[]'); } catch(e) {}
+  try { 
+    const parsed = JSON.parse(localStorage.getItem(SH_LOG_KEY) || '[]');
+    log = Array.isArray(parsed) ? parsed : [];
+  } catch(e) { log = []; }
   log.unshift(entry);
   if (log.length > 100) log = log.slice(0, 100);
   localStorage.setItem(SH_LOG_KEY, JSON.stringify(log));

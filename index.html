@@ -21101,7 +21101,7 @@ async function masterSync() {
     await new Promise(function(r) { setTimeout(r, 300); });
 
     // STEP 9: Activity Log
-    try { document.getElementById('msdot-activitylog')?.classList.add('synced'); } catch(e) {} + Notifications
+    try { document.getElementById('msdot-activitylog')?.classList.add('synced'); } catch(e) {}
     setProgress(90, 'Refreshing Activity Log...');
     try {
       if (typeof filterLog === 'function') filterLog('all', null);

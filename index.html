@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="color-scheme" content="dark">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V-State Studio — PM Dashboard v3.1 (AI Innovation Live)</title>
@@ -2556,6 +2557,17 @@ canvas {
 /* AI chat input: the wrapper is the frame, the textarea stays clean */
 #aiInput.ai-input { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; border-radius: 0 !important; }
 #aiInput.ai-input:focus { box-shadow: none !important; }
+
+/* ── Native controls: dark dropdown lists, suggestion lists, autofill ── */
+:root { color-scheme: dark; }
+select, input, textarea, datalist { color-scheme: dark; }
+select option, select optgroup { background-color: #0c1228 !important; color: #e8eeff !important; }
+select optgroup { color: #a5b4fc !important; font-weight: 700; }
+select option:checked, select option:hover { background-color: #4f46e5 !important; color: #ffffff !important; }
+select option:disabled { color: #7d8bb4 !important; }
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, select:-webkit-autofill {
+  -webkit-text-fill-color: #e8eeff !important; -webkit-box-shadow: 0 0 0 1000px #0c1228 inset !important; caret-color: #e8eeff; transition: background-color 9999s ease-out 0s; }
+::placeholder { color: #7d8bb4; opacity: 1; }
 </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -2864,11 +2876,7 @@ canvas {
     </div>
 
     <div class="sb-section-label" style="color:#00c896;font-weight:700;letter-spacing:.8px">Sync Center</div>
-    <div class="sb-item" onclick="switchSection('synchub',this)" style="background:linear-gradient(90deg,rgba(124,109,255,.10),rgba(0,200,150,.05));margin-bottom:6px;border:1px solid rgba(124,109,255,.18)">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6a5 5 0 0 1 9.5-1.5"/><polyline points="13,3 13,6 10,6"/><path d="M13 10a5 5 0 0 1-9.5 1.5"/><polyline points="3,13 3,10 6,10"/></svg>
-      <span style="font-weight:600;background:linear-gradient(90deg,#a89fff,#00c896);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Sync Hub</span>
-      <span style="margin-left:auto;font-size:8px;background:rgba(0,200,150,.2);color:#00c896;padding:1px 6px;border-radius:8px;font-family:monospace;font-weight:700">NEW</span>
-    </div>
+    
         <div class="sb-item" onclick="switchSection('sync',this)" style="background:linear-gradient(90deg,rgba(0,200,150,.10),rgba(124,109,255,.06));border:1px solid rgba(0,200,150,.22);position:relative">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 3A6 6 0 1 1 5 2"/><polyline points="13,1 13,4 10,4"/><path d="M3 13A6 6 0 1 0 11 14" stroke="#00c896" stroke-width="1.5"/><polyline points="3,15 3,12 6,12" stroke="#00c896"/></svg>
       Sync All Data <span class="sb-badge" style="background:linear-gradient(135deg,#00c896,#a89fff);color:#fff">SYNC</span>
@@ -3220,7 +3228,7 @@ canvas {
         </div>
         <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:6px">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block"></span>
-          <span style="font-size:10px;color:var(--muted)">Smart estimates · Auto-updates when Sync Hub refreshes</span>
+          <span style="font-size:10px;color:var(--muted)">Smart estimates · Auto-updates on every Sync All Data</span>
           <button onclick="mcrRender('exterior')" style="margin-left:auto;font-size:10px;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);color:var(--muted);cursor:pointer">&#8635; Refresh</button>
         </div>
       </div>
@@ -4753,7 +4761,7 @@ canvas {
         </div>
         <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:6px">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block"></span>
-          <span style="font-size:10px;color:var(--muted)">Smart estimates · Auto-updates when Sync Hub refreshes</span>
+          <span style="font-size:10px;color:var(--muted)">Smart estimates · Auto-updates on every Sync All Data</span>
           <button onclick="mcrRender('interior')" style="margin-left:auto;font-size:10px;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);color:var(--muted);cursor:pointer">↺ Refresh</button>
         </div>
       </div>
@@ -6523,7 +6531,7 @@ canvas {
         </div>
         <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:6px">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block"></span>
-          <span style="font-size:10px;color:var(--muted)">Smart estimates · Auto-updates when Sync Hub refreshes</span>
+          <span style="font-size:10px;color:var(--muted)">Smart estimates · Auto-updates on every Sync All Data</span>
           <button onclick="mcrRender('amenities')" style="margin-left:auto;font-size:10px;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);color:var(--muted);cursor:pointer">↺ Refresh</button>
         </div>
       </div>
@@ -11083,7 +11091,7 @@ canvas {
           <button class="topbtn" style="font-size:11px;padding:4px 12px" onclick="filterGantt('interior',this)">Interior</button>
           <button class="topbtn" style="font-size:11px;padding:4px 12px" onclick="filterGantt('amenities',this)">Amenities</button>
           <span style="width:1px;height:18px;background:var(--border);margin:0 4px"></span>
-          <button class="topbtn" style="font-size:11px;padding:4px 12px;background:rgba(0,200,150,.12);border-color:rgba(0,200,150,.3);color:#00c896;display:flex;align-items:center;gap:5px" onclick="refreshGanttFromSync()" title="Pull latest project data from Google Sheet via Sync Hub">
+          <button class="topbtn" style="font-size:11px;padding:4px 12px;background:rgba(0,200,150,.12);border-color:rgba(0,200,150,.3);color:#00c896;display:flex;align-items:center;gap:5px" onclick="refreshGanttFromSync()" title="Pull latest project data from your Google Sheets (Sync All Data)">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M13 3A6 6 0 1 1 5 2"/><polyline points="13,1 13,4 10,4"/></svg>
             Refresh from Sync
           </button>
@@ -11214,7 +11222,7 @@ canvas {
           <span style="font-size:11px;color:var(--muted);font-family:monospace">SOURCE:</span>
           <select id="aii_sync_source" onchange="aiInnoSyncSourceChange()" style="background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:6px;font-size:11px;font-family:monospace;cursor:pointer;outline:none">
             <option value="local">Local (browser)</option>
-            <option value="gsheet">Google Sheets (Sync Hub)</option>
+            <option value="gsheet">Google Sheets (Apps Script)</option>
           </select>
         </div>
         <div style="display:flex;align-items:center;gap:8px;border-left:1px solid var(--border);padding-left:16px">
@@ -11510,7 +11518,7 @@ canvas {
         </div>
 
         <div style="font-size:11px;color:var(--muted);margin-bottom:16px;line-height:1.6;padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border)">
-          Configure how AI Innovation data syncs with external sources. Auto-sync reads from your Google Sheet via the existing Sync Hub configuration. No separate setup needed — just create an <strong style="color:#d8b4fe">AI_Innovation</strong> tab in your master sheet with these columns:
+          Configure how AI Innovation data syncs with external sources. Auto-sync reads from your Google Sheet via the Apps Script URL and token in Sync settings — just create an <strong style="color:#d8b4fe">AI_Innovation</strong> tab in your master sheet with these columns:
         </div>
 
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:16px">
@@ -11531,7 +11539,13 @@ canvas {
         </div>
 
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px">
-          <div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+          <label style="font-size:11px;color:var(--muted)">Apps Script Web App URL <span style="opacity:.7">(for “Google Sheets” source)</span></label>
+          <input type="text" id="aii_cfg_gas_url" placeholder="https://script.google.com/macros/s/…/exec" style="padding:8px 10px;font-size:12px">
+          <label style="font-size:11px;color:var(--muted)">Access token</label>
+          <input type="password" id="aii_cfg_gas_token" placeholder="Token set in your Apps Script" autocomplete="off" style="padding:8px 10px;font-size:12px">
+        </div>
+        <div>
             <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer">
               <input type="checkbox" id="aii_cfg_auto" checked>
               <span><strong>Auto-sync</strong> from Google Sheets every <select id="aii_cfg_interval" style="background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:2px 6px;border-radius:4px;font-size:11px;font-family:monospace"><option value="10">10s</option><option value="30" selected>30s</option><option value="60">1m</option><option value="300">5m</option></select></span>
@@ -11558,7 +11572,7 @@ canvas {
         </div>
 
         <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:12px;margin-bottom:16px;font-size:11px;color:#f59e0b;line-height:1.6">
-          💡 <strong>Tip:</strong> Two-way write-back requires the Sync Hub Apps Script to be deployed. Configure it in <strong>Sync Hub → Apps Script Configuration</strong> first.
+          💡 <strong>Tip:</strong> Two-way write-back requires your Apps Script to be deployed. Add its URL and token in <strong>Sync settings (⚙)</strong> first.
         </div>
 
         <div style="display:flex;gap:8px;justify-content:flex-end">
@@ -12030,328 +12044,38 @@ canvas {
       </div>
     </div>
 
-    <div id="sec-synchub" class="pane">
-
-      <!-- ═══ HERO HEADER ═══════════════════════════════════════ -->
-      <div style="background:linear-gradient(135deg,rgba(124,109,255,.15),rgba(0,200,150,.08));border:1px solid rgba(124,109,255,.3);border-radius:16px;padding:22px 26px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-        <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#7c6dff,#00c896);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 24px rgba(124,109,255,.4)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="32" height="32">
-            <path d="M4 8a8 8 0 0 1 14-3"/>
-            <polyline points="19,3 19,8 14,8"/>
-            <path d="M20 16a8 8 0 0 1-14 3"/>
-            <polyline points="5,21 5,16 10,16"/>
-          </svg>
-        </div>
-        <div style="flex:1;min-width:0">
-          <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin:0;letter-spacing:-.5px;background:linear-gradient(90deg,#a89fff,#00c896);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Sync Hub</h2>
-          <div style="color:var(--muted);font-size:12px;margin-top:3px;font-family:monospace">Real-time two-way sync · Google Sheets ↔ Dashboard · Apps Script API v1.0</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div id="sh_master_status" style="display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--border);font-size:11px;font-family:monospace">
-            <span id="sh_status_dot" style="width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block"></span>
-            <span id="sh_status_label" style="color:var(--muted);font-weight:600">DISCONNECTED</span>
-          </div>
-          <button onclick="shSyncNow()" id="sh_sync_btn" disabled style="padding:9px 18px;border-radius:9px;background:linear-gradient(135deg,#4f46e5,#6d5dfc);border:none;color:white;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;opacity:.5;box-shadow:0 2px 12px rgba(124,109,255,.3)">
-            <svg id="sh_sync_icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M13 3A6 6 0 1 1 5 2"/><polyline points="13,1 13,4 10,4"/></svg>
-            Sync Now
-          </button>
-        </div>
-      </div>
-
-      <!-- ═══ KPI METRICS ROW ═══════════════════════════════════ -->
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
-        <div class="card" style="padding:14px 16px;text-align:center">
-          <div style="font-size:10px;color:var(--muted);font-family:monospace;letter-spacing:.06em;margin-bottom:6px">CONNECTION</div>
-          <div id="sh_kpi_conn" style="font-size:22px;font-weight:700;font-family:'Syne',sans-serif;color:var(--muted)">—</div>
-          <div id="sh_kpi_conn_sub" style="font-size:10px;color:var(--muted);margin-top:3px">No API linked</div>
-        </div>
-        <div class="card" style="padding:14px 16px;text-align:center">
-          <div style="font-size:10px;color:var(--muted);font-family:monospace;letter-spacing:.06em;margin-bottom:6px">LAST SYNC</div>
-          <div id="sh_kpi_lastsync" style="font-size:22px;font-weight:700;font-family:'Syne',sans-serif;color:#00c896">Never</div>
-          <div id="sh_kpi_lastsync_sub" style="font-size:10px;color:var(--muted);margin-top:3px">—</div>
-        </div>
-        <div class="card" style="padding:14px 16px;text-align:center">
-          <div style="font-size:10px;color:var(--muted);font-family:monospace;letter-spacing:.06em;margin-bottom:6px">AUTO-REFRESH</div>
-          <div id="sh_kpi_refresh" style="font-size:22px;font-weight:700;font-family:'Syne',sans-serif;color:#38bdf8">30s</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:3px"><label style="cursor:pointer"><input type="checkbox" id="sh_auto_toggle" onchange="shToggleAuto()" style="vertical-align:middle"> Enabled</label></div>
-        </div>
-        <div class="card" style="padding:14px 16px;text-align:center">
-          <div style="font-size:10px;color:var(--muted);font-family:monospace;letter-spacing:.06em;margin-bottom:6px">TOTAL ROWS</div>
-          <div id="sh_kpi_rows" style="font-size:22px;font-weight:700;font-family:'Syne',sans-serif;color:#a89fff">—</div>
-          <div id="sh_kpi_rows_sub" style="font-size:10px;color:var(--muted);margin-top:3px">Across all tabs</div>
-        </div>
-        <div class="card" style="padding:14px 16px;text-align:center">
-          <div style="font-size:10px;color:var(--muted);font-family:monospace;letter-spacing:.06em;margin-bottom:6px">WRITE MODE</div>
-          <div id="sh_kpi_write" style="font-size:14px;font-weight:700;font-family:'Syne',sans-serif;color:#f59e0b;padding-top:4px">Read+Write</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:3px"><label style="cursor:pointer"><input type="checkbox" id="sh_write_toggle" checked onchange="shToggleWrite()" style="vertical-align:middle"> Enabled</label></div>
-        </div>
-      </div>
-
-      <!-- ═══ SETUP / CONFIG ════════════════════════════════════ -->
-      <div class="card" style="padding:18px 20px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:var(--text);font-family:'Syne',sans-serif">⚙️ Apps Script Configuration</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">One-time setup · stored in browser localStorage</div>
-          </div>
-          <button onclick="shTestConnection()" style="padding:6px 14px;border-radius:7px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);color:#38bdf8;font-size:11px;font-weight:600;cursor:pointer;font-family:monospace">Test Connection</button>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-          <!-- API URL -->
-          <div>
-            <label style="display:block;font-size:10px;color:var(--muted);font-family:monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:600">Apps Script Web App URL</label>
-            <input id="sh_api_url" type="text" placeholder="https://script.google.com/macros/s/AKfyc.../exec"
-                   style="width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:11px;color:var(--text);font-family:monospace;outline:none;transition:border .15s"
-                   onfocus="this.style.borderColor='rgba(124,109,255,.5)'"
-                   onblur="this.style.borderColor=''">
-            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5">After deploying Apps Script → Web App, paste the URL here</div>
-          </div>
-          <!-- API Token -->
-          <div>
-            <label style="display:block;font-size:10px;color:var(--muted);font-family:monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:600">Security Token</label>
-            <input id="sh_api_token" type="password" placeholder="vstate-secret-2026-change-me"
-                   style="width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:11px;color:var(--text);font-family:monospace;outline:none;transition:border .15s"
-                   onfocus="this.style.borderColor='rgba(124,109,255,.5)'"
-                   onblur="this.style.borderColor=''">
-            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5">Same token you set in Apps Script CONFIG.API_TOKEN</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-          <button onclick="shSaveConfig()" style="padding:8px 16px;border-radius:7px;background:linear-gradient(135deg,#4f46e5,#6d5dfc);border:none;color:white;font-size:12px;font-weight:600;cursor:pointer;box-shadow:0 2px 10px rgba(124,109,255,.3)">💾 Save Configuration</button>
-          <button onclick="shClearConfig()" style="padding:8px 14px;border-radius:7px;background:transparent;border:1px solid rgba(255,107,107,.3);color:#fca5a5;font-size:12px;cursor:pointer">Clear Settings</button>
-          <button onclick="shShowSetupGuide()" style="padding:8px 14px;border-radius:7px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#f59e0b;font-size:12px;font-weight:600;cursor:pointer">📖 Setup Guide</button>
-        </div>
-
-        <div id="sh_config_msg" style="margin-top:10px;font-size:11px;font-family:monospace;display:none;padding:8px 12px;border-radius:6px"></div>
-      </div>
-
-      <!-- ═══ CATEGORY SYNC STATUS ════════════════════════════════ -->
-      <div class="card" style="padding:18px 20px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:var(--text);font-family:'Syne',sans-serif">📊 Category Sync Status</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">Each project category syncs from the same Apps Script API</div>
-          </div>
-          <div style="font-size:10px;color:var(--muted);font-family:monospace">3 tabs · 1 master sheet</div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-          <!-- Exterior -->
-          <div style="background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(56,189,248,.02));border:1px solid rgba(56,189,248,.25);border-radius:10px;padding:14px 16px">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <div style="display:flex;align-items:center;gap:8px">
-                <div style="width:9px;height:9px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8"></div>
-                <span style="font-size:13px;font-weight:600;color:#38bdf8;font-family:'Syne',sans-serif">Exterior</span>
-              </div>
-              <span id="sh_ext_status_badge" style="font-size:9px;font-family:monospace;color:var(--muted);padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.05)">—</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-              <div style="background:var(--bg4);border-radius:6px;padding:8px;text-align:center">
-                <div style="font-size:18px;font-weight:700;font-family:monospace;color:#38bdf8" id="sh_ext_rows">—</div>
-                <div style="font-size:9px;color:var(--muted);margin-top:1px">ROWS</div>
-              </div>
-              <div style="background:var(--bg4);border-radius:6px;padding:8px;text-align:center">
-                <div style="font-size:18px;font-weight:700;font-family:monospace;color:#a89fff" id="sh_ext_cols">—</div>
-                <div style="font-size:9px;color:var(--muted);margin-top:1px">COLS</div>
-              </div>
-            </div>
-            <div style="font-size:10px;color:var(--muted);font-family:monospace;margin-bottom:8px" id="sh_ext_lastsync">Last: Never</div>
-            <button onclick="shSyncCategory('exterior')" style="width:100%;padding:6px;border-radius:6px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);color:#38bdf8;font-size:11px;font-weight:600;cursor:pointer;font-family:monospace">Sync Exterior</button>
-          </div>
-
-          <!-- Interior -->
-          <div style="background:linear-gradient(135deg,rgba(167,139,250,.06),rgba(167,139,250,.02));border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:14px 16px">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <div style="display:flex;align-items:center;gap:8px">
-                <div style="width:9px;height:9px;border-radius:50%;background:#a89fff;box-shadow:0 0 8px #a89fff"></div>
-                <span style="font-size:13px;font-weight:600;color:#a89fff;font-family:'Syne',sans-serif">Interior</span>
-              </div>
-              <span id="sh_int_status_badge" style="font-size:9px;font-family:monospace;color:var(--muted);padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.05)">—</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-              <div style="background:var(--bg4);border-radius:6px;padding:8px;text-align:center">
-                <div style="font-size:18px;font-weight:700;font-family:monospace;color:#a89fff" id="sh_int_rows">—</div>
-                <div style="font-size:9px;color:var(--muted);margin-top:1px">ROWS</div>
-              </div>
-              <div style="background:var(--bg4);border-radius:6px;padding:8px;text-align:center">
-                <div style="font-size:18px;font-weight:700;font-family:monospace;color:#a89fff" id="sh_int_cols">—</div>
-                <div style="font-size:9px;color:var(--muted);margin-top:1px">COLS</div>
-              </div>
-            </div>
-            <div style="font-size:10px;color:var(--muted);font-family:monospace;margin-bottom:8px" id="sh_int_lastsync">Last: Never</div>
-            <button onclick="shSyncCategory('interior')" style="width:100%;padding:6px;border-radius:6px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#a89fff;font-size:11px;font-weight:600;cursor:pointer;font-family:monospace">Sync Interior</button>
-          </div>
-
-          <!-- Amenities -->
-          <div style="background:linear-gradient(135deg,rgba(0,200,150,.06),rgba(0,200,150,.02));border:1px solid rgba(0,200,150,.25);border-radius:10px;padding:14px 16px">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-              <div style="display:flex;align-items:center;gap:8px">
-                <div style="width:9px;height:9px;border-radius:50%;background:#00c896;box-shadow:0 0 8px #00c896"></div>
-                <span style="font-size:13px;font-weight:600;color:#00c896;font-family:'Syne',sans-serif">Amenities</span>
-              </div>
-              <span id="sh_ame_status_badge" style="font-size:9px;font-family:monospace;color:var(--muted);padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.05)">—</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-              <div style="background:var(--bg4);border-radius:6px;padding:8px;text-align:center">
-                <div style="font-size:18px;font-weight:700;font-family:monospace;color:#00c896" id="sh_ame_rows">—</div>
-                <div style="font-size:9px;color:var(--muted);margin-top:1px">ROWS</div>
-              </div>
-              <div style="background:var(--bg4);border-radius:6px;padding:8px;text-align:center">
-                <div style="font-size:18px;font-weight:700;font-family:monospace;color:#00c896" id="sh_ame_cols">—</div>
-                <div style="font-size:9px;color:var(--muted);margin-top:1px">COLS</div>
-              </div>
-            </div>
-            <div style="font-size:10px;color:var(--muted);font-family:monospace;margin-bottom:8px" id="sh_ame_lastsync">Last: Never</div>
-            <button onclick="shSyncCategory('amenities')" style="width:100%;padding:6px;border-radius:6px;background:rgba(0,200,150,.12);border:1px solid rgba(0,200,150,.3);color:#00c896;font-size:11px;font-weight:600;cursor:pointer;font-family:monospace">Sync Amenities</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ ACTIVITY LOG ════════════════════════════════════════ -->
-      <div class="card" style="padding:18px 20px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:var(--text);font-family:'Syne',sans-serif">📜 Sync Activity Log</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">Real-time log of all sync operations</div>
-          </div>
-          <button onclick="shClearActivityLog()" style="font-size:10px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:monospace">Clear log</button>
-        </div>
-        <div id="sh_activity_log" style="max-height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;font-family:monospace;font-size:11px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px">
-          <div style="color:var(--muted);font-style:italic;padding:8px">No activity yet · Save Apps Script URL above to begin</div>
-        </div>
-      </div>
-
-    </div>
+    
 
     <div id="sec-sync" class="pane">
 
-
-      <!-- Header with master sync button -->
-      <div style="background:linear-gradient(135deg,rgba(0,200,150,.12),rgba(124,109,255,.08));border:1px solid rgba(0,200,150,.25);border-radius:14px;padding:24px 26px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:18px">
-        <div style="width:60px;height:60px;border-radius:14px;background:rgba(0,200,150,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(0,200,150,.35)">
-          <svg width="30" height="30" viewBox="0 0 16 16" fill="none" stroke="#00c896" stroke-width="1.4"><path d="M13 3A6 6 0 1 1 5 2"/><polyline points="13,1 13,4 10,4"/><path d="M3 13A6 6 0 1 0 11 14"/><polyline points="3,15 3,12 6,12"/></svg>
+      <div class="card" style="padding:20px">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <div style="font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text)">Sync all Google Sheets</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">One click pulls all 4 studio sheets and updates every tab — Overview, Exterior, Interior, Amenities, Workload, Risk, Gantt, Activity, Notifications, Client Services and AI.</div>
+            <div id="vsSummary" style="font-size:11px;color:var(--muted);margin-top:6px"></div>
+          </div>
+          <button id="vsSyncBtn" onclick="vsSyncAll()" style="padding:12px 22px;border-radius:12px;border:1px solid rgba(165,180,252,.35);background:linear-gradient(135deg,#4f46e5,#6d5dfc);color:#fff;font-size:13px;font-weight:700;cursor:pointer">⟳ Sync All Sheets Now</button>
         </div>
-        <div style="flex:1;min-width:240px">
-          <div style="font-family:var(--font-head);font-size:20px;font-weight:700;letter-spacing:-.3px">Sync Center</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6">Pull latest data from all linked Google Sheets and update Exterior, Interior, and Amenities dashboards at once.</div>
+        <div id="vsStatus" style="display:none;margin-top:14px;padding:10px 14px;border-radius:10px;border:1px solid;font-size:12px;line-height:1.5"></div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:11px;color:var(--muted)">
+          <span>Interior now: <b style="color:var(--text)" id="syncIntProj">—</b> projects · <b style="color:var(--text)" id="syncIntUnits">—</b> units · <b style="color:var(--text)" id="syncIntArts">—</b> artists</span>
+          <a href="javascript:void(0)" onclick="vsClearCache()" style="color:var(--muted);margin-left:auto">Reset to built-in data</a>
         </div>
-        <button onclick="syncAll()" id="syncAllBtn" style="padding:14px 28px;border-radius:12px;background:linear-gradient(135deg,#00c896,#34d399);border:none;color:#000;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:9px;transition:all .2s;box-shadow:0 6px 24px rgba(0,200,150,.3);white-space:nowrap">
-          <svg id="syncAllIcon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 3A6 6 0 1 1 5 2"/><polyline points="13,1 13,4 10,4"/></svg>
-          Sync All Now
-        </button>
       </div>
 
-      <!-- Status row -->
-      <div id="syncStatusRow" style="display:none;padding:14px 16px;border-radius:11px;margin-bottom:18px;font-size:12px;line-height:1.7"></div>
+      <div id="vsCards" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px"></div>
 
-      <!-- 3 category cards -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:18px">
-
-        <!-- EXTERIOR card -->
-        <div class="sync-card" id="syncCard_exterior" style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #38bdf8;border-radius:12px;padding:18px 20px">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="width:32px;height:32px;border-radius:9px;background:rgba(56,189,248,.12);display:flex;align-items:center;justify-content:center">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#38bdf8" stroke-width="1.5"><rect x="3" y="3" width="10" height="10" rx="1.5"/><rect x="5" y="5" width="2" height="2"/><rect x="9" y="5" width="2" height="2"/><rect x="5" y="9" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/></svg>
-              </div>
-              <div style="font-family:var(--font-head);font-weight:700;font-size:14px">Exterior</div>
-            </div>
-            <div id="syncCardStatus_exterior" style="font-size:10px;color:var(--muted);padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid var(--border)">Idle</div>
-          </div>
-          <div id="syncCardSheet_exterior" style="font-size:11px;color:var(--muted);margin-bottom:8px;word-break:break-all">No sheet linked</div>
-          <div id="syncCardMeta_exterior" style="font-size:10px;color:var(--muted2);line-height:1.6"></div>
-          <div style="display:flex;gap:6px;margin-top:12px">
-            <button onclick="syncFromSheet('exterior')" style="flex:1;padding:8px;border-radius:8px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.3);color:#38bdf8;font-size:11px;font-weight:600;cursor:pointer">↻ Sync</button>
-            <button onclick="syncCardOpen('exterior')" style="padding:8px 12px;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer">↗</button>
-          </div>
+      <div class="card" style="padding:16px">
+        <div class="card-header"><span class="card-title">How to link a sheet (one-time)</span></div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7">
+          <b style="color:var(--text)">1.</b> Open the sheet in Google Sheets and click the correct <b>tab</b> at the bottom (e.g. “Ext Modeling”, “Sheet2”).<br>
+          <b style="color:var(--text)">2.</b> Click <b>Share → General access → “Anyone with the link” → Viewer</b>. <i>(Or File → Share → Publish to web → that tab → CSV, and paste that link instead.)</i><br>
+          <b style="color:var(--text)">3.</b> Copy the address bar URL (it ends with <code>#gid=…</code> — that picks the tab), paste it in the matching card above, click <b>Save</b>.<br>
+          <b style="color:var(--text)">4.</b> Click <b>Sync All Sheets Now</b>. The dashboard remembers the last good sync, even after refreshing the page.
         </div>
-
-        <!-- INTERIOR card · Pre-linked V-State Interior Sheet -->
-        <div class="sync-card" id="syncCard_interior" style="background:linear-gradient(135deg,rgba(124,109,255,.06),rgba(124,109,255,.02));border:1px solid rgba(124,109,255,.3);border-left:3px solid #a89fff;border-radius:12px;padding:18px 20px;position:relative">
-          <span style="position:absolute;top:10px;right:10px;font-size:8px;font-family:monospace;font-weight:700;color:#00c896;background:rgba(0,200,150,.12);padding:2px 7px;border-radius:10px;border:1px solid rgba(0,200,150,.3)">● LINKED</span>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="width:32px;height:32px;border-radius:9px;background:rgba(124,109,255,.18);display:flex;align-items:center;justify-content:center;border:1px solid rgba(124,109,255,.3)">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a89fff" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="2" y1="6" x2="14" y2="6"/><line x1="6" y1="6" x2="6" y2="14"/></svg>
-              </div>
-              <div>
-                <div style="font-family:var(--font-head);font-weight:700;font-size:14px">Interior</div>
-                <div style="font-size:9px;color:var(--muted);font-family:monospace;margin-top:1px">129 units · 49 projects</div>
-              </div>
-            </div>
-            <div id="syncCardStatus_interior" style="font-size:10px;color:#a89fff;padding:3px 9px;border-radius:6px;background:rgba(124,109,255,.1);border:1px solid rgba(124,109,255,.3);margin-top:18px">Ready</div>
-          </div>
-
-          <!-- Pre-linked Google Sheet URL display -->
-          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:10px">
-            <div style="font-size:9px;color:var(--muted);font-family:monospace;letter-spacing:.04em;margin-bottom:4px">📋 GOOGLE SHEET URL</div>
-            <a href="https://docs.google.com/spreadsheets/d/1gerwECfbcUfhgB88NjVDTtRcBT3z9xTbqxffpjtHtpU/edit" target="_blank" rel="noopener" id="syncCardSheet_interior" style="font-size:10px;color:#a89fff;text-decoration:none;font-family:monospace;word-break:break-all;display:block;line-height:1.5;transition:color .15s" onmouseover="this.style.color='#c4b5fd'" onmouseout="this.style.color='#a89fff'">
-              https://docs.google.com/spreadsheets/d/1gerwECfbcUfhgB88NjVDTtRcBT3z9xTbqxffpjtHtpU/edit
-            </a>
-            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid var(--border);font-size:9px;color:var(--muted);font-family:monospace">
-              <span>Sheet ID: 1gerw...HtpU</span>
-              <span style="margin-left:auto;color:#00c896">✓ Source of truth</span>
-            </div>
-          </div>
-
-          <!-- Sheet stats grid -->
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px">
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 8px;text-align:center">
-              <div style="font-size:13px;font-weight:700;font-family:var(--font-head);color:#a89fff"><span id="syncIntProj">49</span></div>
-              <div style="font-size:8px;color:var(--muted);font-family:monospace;letter-spacing:.04em">PROJECTS</div>
-            </div>
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 8px;text-align:center">
-              <div style="font-size:13px;font-weight:700;font-family:var(--font-head);color:#00c896"><span id="syncIntUnits">129</span></div>
-              <div style="font-size:8px;color:var(--muted);font-family:monospace;letter-spacing:.04em">UNITS</div>
-            </div>
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 8px;text-align:center">
-              <div style="font-size:13px;font-weight:700;font-family:var(--font-head);color:#38bdf8"><span id="syncIntArts">15</span></div>
-              <div style="font-size:8px;color:var(--muted);font-family:monospace;letter-spacing:.04em">ARTISTS</div>
-            </div>
-          </div>
-          <div id="syncCardMeta_interior" style="font-size:10px;color:var(--muted2);line-height:1.6;margin-bottom:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-            <span>📅 <span id="syncLastTime_interior" style="color:var(--muted)">Not yet synced</span></span>
-            <span style="color:var(--muted2)">·</span>
-            <span style="color:#00c896;font-family:monospace;font-size:9px">● Auto-sync via Sync Hub</span>
-          </div>
-
-          <div style="display:flex;gap:6px">
-            <button onclick="syncFromSheet('interior')" style="flex:1;padding:9px;border-radius:8px;background:linear-gradient(135deg,rgba(124,109,255,.18),rgba(124,109,255,.1));border:1px solid rgba(124,109,255,.4);color:#a89fff;font-size:11px;font-weight:700;cursor:pointer;font-family:monospace;transition:all .15s" onmouseover="this.style.background='rgba(124,109,255,.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(124,109,255,.18),rgba(124,109,255,.1))'">
-              ↻ Sync Interior Now
-            </button>
-            <button onclick="window.open('https://docs.google.com/spreadsheets/d/1gerwECfbcUfhgB88NjVDTtRcBT3z9xTbqxffpjtHtpU/edit','_blank','noopener')" style="padding:9px 12px;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='rgba(124,109,255,.4)';this.style.color='#a89fff'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'" title="Open sheet in new tab">
-              ↗
-            </button>
-            <button onclick="navigator.clipboard.writeText('https://docs.google.com/spreadsheets/d/1gerwECfbcUfhgB88NjVDTtRcBT3z9xTbqxffpjtHtpU/edit'); this.textContent='✓'; setTimeout(() => this.textContent='⎘', 1500)" style="padding:9px 12px;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer;transition:all .15s;font-family:monospace" onmouseover="this.style.borderColor='rgba(124,109,255,.4)';this.style.color='#a89fff'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'" title="Copy link">
-              ⎘
-            </button>
-          </div>
-        </div>
-
-        <!-- AMENITIES card -->
-        <div class="sync-card" id="syncCard_amenities" style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid #00c896;border-radius:12px;padding:18px 20px">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="width:32px;height:32px;border-radius:9px;background:rgba(0,200,150,.12);display:flex;align-items:center;justify-content:center">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#00c896" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
-              </div>
-              <div style="font-family:var(--font-head);font-weight:700;font-size:14px">Amenities</div>
-            </div>
-            <div id="syncCardStatus_amenities" style="font-size:10px;color:var(--muted);padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid var(--border)">Idle</div>
-          </div>
-          <div id="syncCardSheet_amenities" style="font-size:11px;color:var(--muted);margin-bottom:8px;word-break:break-all">No sheet linked</div>
-          <div id="syncCardMeta_amenities" style="font-size:10px;color:var(--muted2);line-height:1.6"></div>
-          <div style="display:flex;gap:6px;margin-top:12px">
-            <button onclick="syncFromSheet('amenities')" style="flex:1;padding:8px;border-radius:8px;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.3);color:#00c896;font-size:11px;font-weight:600;cursor:pointer">↻ Sync</button>
-            <button onclick="syncCardOpen('amenities')" style="padding:8px 12px;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer">↗</button>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Sync log -->
       <div class="card" style="padding:0;overflow:hidden">
         <div style="padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg3)">
           <div>
@@ -12365,16 +12089,10 @@ canvas {
         </div>
       </div>
 
-      <!-- Tips footer -->
-      <div style="margin-top:18px;padding:14px 16px;border-radius:11px;background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.18);font-size:11px;line-height:1.8;color:var(--muted)">
-        💡 <strong style="color:#38bdf8">How to use:</strong>
-        Click <strong style="color:var(--text)">Sync All Now</strong> to refresh data from all three Google Sheets simultaneously.
-        Each sheet must be <strong style="color:var(--text)">Published to web</strong> (File → Share → Publish to web) for sync to work.
-        Individual category sync buttons are also available below each card.
-      </div>
     </div>
 
-    <div id="sec-artist-login" class="pane">
+    
+<div id="sec-artist-login" class="pane">
 
 
       <!-- LOGIN OVERLAY (shown when not logged in) -->
@@ -12836,7 +12554,7 @@ const artistData = [
   {name:'Anubhav Das',initials:'AD',color:'#34d399',bg:'rgba(52,211,153,.15)',category:'amenities',role:'Amenities / Unreal',projects:['L&T Wagale','KL Hariniketan','Narang Goregaon','Runwal 25 Hours'],load:53,avail:'Busy',skill:'Unreal / Rendering',perf:59,revs:2.8,trend:[53,53,53,53,53,53,53,53],total:41,done:24,wip:0,review:16,hold:0},
 ];
 
-var AG_ROLE_BLOCK = { viewer: ['artist-manage', 'settings', 'bd', 'synchub', 'sync'], studio: ['bd'], admin: [] };
+var AG_ROLE_BLOCK = { viewer: ['artist-manage', 'settings', 'bd', 'sync'], studio: ['bd'], admin: [] };
 var agActiveRole = 'admin';   // role of the signed-in user (set by applyRolePermissions)
 function switchSection(id, el) {
   if (typeof AG_ROLE_BLOCK !== 'undefined' && (AG_ROLE_BLOCK[agActiveRole] || []).includes(id)) {
@@ -12853,7 +12571,7 @@ function switchSection(id, el) {
     exterior:'Exterior Projects', interior:'Interior Projects', amenities:'Amenities Projects',
     artists:'Artists', workload:'Workload Heatmap', risks:'Risk Tracker',
     gantt:'Gantt Timeline', activitylog:'Activity Log', settings:'Settings',
-    drive:'Google Drive', ai:'AI Assistant', 'artist-login':'Artist Portal', aiinno:'AI Innovation', synchub:'Sync Hub', sync:'Sync Center',
+    drive:'Google Drive', ai:'AI Assistant', 'artist-login':'Artist Portal', aiinno:'AI Innovation', sync:'Sync Center',
     cs:'Client Services', bd:'Business Development'
   };
   document.getElementById('topbarTitle').innerHTML = (titles[id]||id) + ' <span>/ Dashboard</span>';
@@ -12879,15 +12597,14 @@ function switchSection(id, el) {
   if (id === 'gantt')        { setTimeout(() => renderGantt(typeof ganttCurrentFilter !== 'undefined' ? ganttCurrentFilter : 'all'), 50); }
   if (id === 'activitylog')  { filterLog('all', null); }
   if (id === 'notifications'){ renderNotifications(); }
+  if (id === 'sync') { try { vsRenderSyncTab(); vsUpdateSyncCenterStats(); } catch(e) {} }
   if (id === 'drive') { try { renderDriveList(); renderPinnedFolders(); } catch(e) {} }
   if (id === 'artist-login') { try { apFillSelect(); } catch(e) {} }
   if (id === 'ai') { try { renderAIPanel(); } catch(e) {} }
   if (id === 'risks') { try { renderRiskArtistLoad(); } catch(e) {} }
   if (id === 'workload') { try { renderHeatmap(); } catch(e) {} }
   if (id === 'analytics')    { setTimeout(() => { renderTrendChart('analyticsChart','analyticsLabels'); renderHoursChart(); }, 50); }
-  if (id === 'settings')     { renderSettings(); }
-  if (id === 'synchub')      { setTimeout(() => shInit(), 50); }
-  if (id === 'aiinno')       { setTimeout(() => { aiInnoRender(); aiInnoActivateHooks(); }, 50); }
+  if (id === 'settings')     { renderSettings(); }if (id === 'aiinno')       { setTimeout(() => { aiInnoRender(); aiInnoActivateHooks(); }, 50); }
   if (id === 'cs') { renderCS(); renderCSWidgets(); }
   if (id === 'bd') { renderBD(); renderBDWidgets(); }
   if (id === 'artist-manage') { setTimeout(initArtistManage, 60); }
@@ -12902,12 +12619,9 @@ function renderAnalyticsStatus() {
   const box = document.getElementById('analyticsChart'), leg = document.getElementById('analyticsLabels');
   if (!box || !leg) return;
   const segs = [['Done','#00c896'],['In review','#a89fff'],['WIP','#38bdf8'],['On hold','#ff6b6b'],['Not started','rgba(255,255,255,.14)']];
-  const teams = [
-    ['Exterior · Arbaz', 34, [16,2,3,6,7]],
-    ['Exterior · Vikas', 13, [6,1,6,0,0]],
-    ['Interior', 129, [64,17,12,9,27]],
-    ['Amenities', 358, [248,55,22,0,33]]
-  ];
+  const K = typeof vsCounts === 'function' ? vsCounts() : null;
+  const row = (n, x) => [n, x.total, [x.done, x.review, x.wip, x.hold, x.ns]];
+  const teams = K ? [row('Exterior · Arbaz', K.arbaz), row('Exterior · Vikas', K.vikas), row('Interior', K.interior), row('Amenities', K.amenities)].filter(t => t[1]) : [];
   box.innerHTML = teams.map(([name,total,v]) => `
     <div>
       <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px">
@@ -12939,8 +12653,10 @@ function renderTrendChart(containerId, labelId) {
 
 function renderHoursChart() {
   // Amenities client review rounds distribution (from Amenities tab data)
-  const rounds = ['R1','R2','R3','R4','R5','R6','R9'];
-  const counts = [49,145,7,31,62,11,12];
+  const tally = {}; document.querySelectorAll('#amenTableBody tr.amen-unit-row').forEach(r => { const t = (r.cells[5] || {}).textContent || ''; const m = t.match(/R(\d+)/); if (m) tally[m[1]] = (tally[m[1]] || 0) + 1; });
+  const keys = Object.keys(tally).map(Number).sort((a, b) => a - b);
+  const rounds = keys.map(k => 'R' + k), counts = keys.map(k => tally[k]);
+  if (!counts.length) return;
   const max = Math.max(...counts);
   const c = document.getElementById('hoursChart');
   const l = document.getElementById('hoursLabels');
@@ -13323,7 +13039,7 @@ function renderGantt(filterCat) {
 function refreshGanttFromSync() {
   const cat = (typeof ganttCurrentFilter !== 'undefined' && ganttCurrentFilter) || 'all';
   const done = () => renderGantt(cat);
-  if (typeof shSyncNow === 'function') { Promise.resolve().then(() => shSyncNow()).then(done, done); } else done();
+  if (typeof vsSyncAll === 'function' && Object.keys(vsGetSources()).length) { vsSyncAll().then(done, done); } else done();
 }
 
 var ganttCurrentFilter = 'all';
@@ -14700,7 +14416,7 @@ var PASSWORDS = {
   admin: 'vstate@2025'
 };
 var AP_ALIAS = { 'mirza ali': 'mirza', 'vaibhav m': 'vaibhav', 'abhi': 'abhinav', 'saksham': 'shaksam', 'shaksham': 'shaksam', 'shaizad': 'shahzad' };
-function apNames(txt) { return String(txt || '').split(/[,·+\/]/).map(s => s.trim().toLowerCase()).filter(Boolean).map(s => AP_ALIAS[s] || s); }
+function apNames(txt) { return typeof vsSplitNames === 'function' ? vsSplitNames(txt) : String(txt || '').split(/[,·+\/]/).map(s => s.trim().toLowerCase()).filter(Boolean).map(s => AP_ALIAS[s] || s); }
 
 function apBuildArtist(name) {
   const a = (typeof artistData !== 'undefined' ? artistData : []).find(x => x.name === name) || {};
@@ -15416,7 +15132,7 @@ function filterExt() {
     const matchQ  = !q  || text.includes(q);
     const matchSt = !st || statusCell.includes(st);
     const matchUr = !ur || unrealCell.includes(ur);
-    const matchCl = !cl || projectName.includes(cl);
+    const matchCl = !cl || (row.dataset.client || '').toLowerCase() === cl || projectName.includes(cl);
     const show = matchQ && matchSt && matchUr && matchCl;
     row.style.display = show ? '' : 'none';
     if (show) visible++;
@@ -17143,7 +16859,7 @@ function grantAccess(role, user, saveSession) {
 }
 
 var AG_ROLE_BLOCK = AG_ROLE_BLOCK || {};
-AG_ROLE_BLOCK = { viewer: ['artist-manage', 'settings', 'bd', 'synchub', 'sync'], studio: ['bd'], admin: [] };
+AG_ROLE_BLOCK = { viewer: ['artist-manage', 'settings', 'bd', 'sync'], studio: ['bd'], admin: [] };
 function applyRolePermissions(role) {
   agActiveRole = role || 'admin';
   document.querySelectorAll('.sb-item').forEach(i => { i.style.display = ''; i.style.opacity = ''; });   // reset from any previous login
@@ -18032,81 +17748,7 @@ function extOpenSheet() {
 
 function extQuickSync() { extDoSync('full'); }
 
-async function extDoSync(mode) {
-  const links = getGsheetLinks();
-  const url = links['exterior'];
-  if (!url) {
-    extSyncAddLog('error', 'No sheet linked — save a URL first');
-    if (typeof showAmToast === 'function') showAmToast('Link a sheet first', '#f59e0b');
-    return;
-  }
-
-  // Set loading state
-  const fullBtn   = document.getElementById('extFullSyncBtn');
-  const quickBtn  = document.getElementById('extQuickSyncBtn');
-  const fullIcon  = document.getElementById('extFullSyncIcon');
-  const quickIcon = document.getElementById('extQuickSyncIcon');
-  const badge     = document.getElementById('extSyncStatusBadge');
-
-  [fullBtn, quickBtn].forEach(b => { if(b) b.disabled = true; });
-  if (fullIcon)  fullIcon.classList.add('gs-spin');
-  if (quickIcon) quickIcon.classList.add('gs-spin');
-  if (badge) { badge.innerHTML = '<span style="width:5px;height:5px;border-radius:50%;background:#f59e0b;display:inline-block;animation:livePulse 1s ease-in-out infinite"></span> Syncing…'; badge.style.color='#f59e0b'; badge.style.borderColor='rgba(245,158,11,.3)'; badge.style.background='rgba(245,158,11,.08)'; }
-
-  extSyncAddLog('info', 'Starting ' + mode + ' sync from sheet…');
-
-  try {
-    const rows = await gsFetchSheet(url);
-
-    if (!rows || rows.length === 0) {
-      extSyncAddLog('error', 'Sheet returned 0 rows. Make sure it is published (File → Share → Publish to web).');
-      extSetSyncResult('error');
-      return;
-    }
-
-    extSyncAddLog('info', rows.length + ' rows fetched from sheet');
-
-    if (mode === 'full') {
-      // Full table rebuild
-      const result = gsDynamicRebuildOnSync('exterior', rows);
-      if (!result.success) {
-        extSyncAddLog('error', 'Table rebuild failed: ' + (result.error || 'unknown error'));
-        extSetSyncResult('error');
-        return;
-      }
-      // Update stat counters
-      extUpdateKpiFromRows(rows);
-      // Update status counters
-      const el_rows = document.getElementById('extStatRowsSync');
-      const el_cols = document.getElementById('extStatColsSync');
-      if (el_rows) el_rows.textContent = result.rows;
-      if (el_cols) el_cols.textContent = result.columns;
-      extSyncAddLog('success', 'Table rebuilt — ' + result.rows + ' rows × ' + result.columns + ' columns');
-      // Save to cache
-      const ts = JSON.parse(localStorage.getItem(GS_SYNC_KEY)||'{}');
-      ts['exterior'] = { at: new Date().toISOString(), rows: result.rows, columns: result.columns };
-      localStorage.setItem(GS_SYNC_KEY, JSON.stringify(ts));
-
-    } else if (mode === 'stats') {
-      extUpdateKpiFromRows(rows);
-      extSyncAddLog('success', 'KPI stats updated from ' + rows.length + ' rows');
-    }
-
-    extSetSyncResult('ok');
-    extApplyLinkState(url);
-    if (typeof showAmToast === 'function') showAmToast('✓ Exterior sync complete', '#00c896');
-
-  } catch(err) {
-    const msg = err.message || String(err);
-    extSyncAddLog('error', 'Sync failed: ' + msg);
-    extSetSyncResult('error');
-    if (typeof showAmToast === 'function') showAmToast('Sync error — check console', '#ff6b6b');
-  } finally {
-    [fullBtn, quickBtn].forEach(b => { if(b) b.disabled = false; });
-    if (fullIcon)  fullIcon.classList.remove('gs-spin');
-    if (quickIcon) quickIcon.classList.remove('gs-spin');
-  }
-}
+async function extDoSync(mode) { const r = await vsSyncAll({ only: ['arbaz', 'vikas'] }); if (typeof showAmToast === 'function') showAmToast(r && r.ok ? '✓ Exterior synced from Google Sheets' : 'Exterior sync failed — see Sync All Data tab', r && r.ok ? '#00c896' : '#f59e0b'); return r; }
 
 function extUpdateKpiFromRows(rows) {
   if (!rows || !rows.length) return;
@@ -18811,7 +18453,7 @@ async function aiInnoSyncNow() {
   // Google Sheets sync
   const shCfg = (() => { try { return JSON.parse(localStorage.getItem('vstudio_sh_config') || '{}'); } catch(e){ return {}; } })();
   if (!shCfg.url || !shCfg.token) {
-    aiInnoAddTicker('error', 'Sync Hub not configured');
+    aiInnoAddTicker('error', 'Apps Script not configured — open Sync settings and add the URL + token');
     return;
   }
 
@@ -18989,6 +18631,7 @@ function aiInnoToggleAutoRefresh() {
 
 // ── Sync config modal ─────────────────────────────────────────
 function aiInnoOpenSyncConfig() {
+  try { const cur = JSON.parse(localStorage.getItem('vstudio_sh_config') || '{}') || {}; const u = document.getElementById('aii_cfg_gas_url'), t = document.getElementById('aii_cfg_gas_token'); if (u) u.value = cur.url || ''; if (t) t.value = cur.token || ''; } catch (e) {}
   const cfg = aiInnoGetSyncCfg();
   document.getElementById('aii_cfg_auto').checked = cfg.autoSync !== false;
   document.getElementById('aii_cfg_writeback').checked = cfg.writeback !== false;
@@ -19003,6 +18646,8 @@ function aiInnoCloseSyncConfig() {
 }
 
 function aiInnoSaveSyncConfig() {
+  try { const u = (document.getElementById('aii_cfg_gas_url')?.value || '').trim(), t = (document.getElementById('aii_cfg_gas_token')?.value || '').trim();
+    const cur = JSON.parse(localStorage.getItem('vstudio_sh_config') || '{}') || {}; if (u) cur.url = u; if (t) cur.token = t; localStorage.setItem('vstudio_sh_config', JSON.stringify(cur)); } catch (e) {}
   const cfg = {
     autoSync: document.getElementById('aii_cfg_auto').checked,
     writeback: document.getElementById('aii_cfg_writeback').checked,
@@ -19375,59 +19020,8 @@ function shSetStatus(state) {
 }
 
 // ── Init when sync hub opens ──────────────────────────────────
-function shInit() {
-  const cfg = shGetConfig();
-  const urlEl = document.getElementById('sh_api_url');
-  const tokEl = document.getElementById('sh_api_token');
-  if (urlEl && cfg.url) urlEl.value = cfg.url;
-  if (tokEl && cfg.token) tokEl.value = cfg.token;
-
-  const autoToggle = document.getElementById('sh_auto_toggle');
-  if (autoToggle) autoToggle.checked = localStorage.getItem(SH_AUTO_KEY) === '1';
-
-  const writeToggle = document.getElementById('sh_write_toggle');
-  if (writeToggle) writeToggle.checked = localStorage.getItem(SH_WRITE_KEY) !== '0';
-
-  shRestoreLog();
-
-  // Show last sync info
-  try {
-    const last = JSON.parse(localStorage.getItem(SH_LAST_KEY) || '{}');
-    if (last.timestamp) {
-      const d = new Date(last.timestamp);
-      const el = document.getElementById('sh_kpi_lastsync');
-      const sub = document.getElementById('sh_kpi_lastsync_sub');
-      if (el) el.textContent = shFormatRelative(last.timestamp);
-      if (sub) sub.textContent = d.toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
-    }
-    if (last.byCategory) {
-      ['exterior','interior','amenities'].forEach(cat => {
-        const c = last.byCategory[cat];
-        if (c) {
-          const rEl = document.getElementById('sh_' + cat.substring(0,3) + '_rows');
-          const cEl = document.getElementById('sh_' + cat.substring(0,3) + '_cols');
-          const lEl = document.getElementById('sh_' + cat.substring(0,3) + '_lastsync');
-          const bEl = document.getElementById('sh_' + cat.substring(0,3) + '_status_badge');
-          if (rEl) rEl.textContent = c.rows;
-          if (cEl) cEl.textContent = c.cols;
-          if (lEl) lEl.textContent = 'Last: ' + shFormatRelative(c.at);
-          if (bEl) { bEl.textContent = '✓ OK'; bEl.style.color = '#00c896'; bEl.style.background = 'rgba(0,200,150,.1)'; }
-        }
-      });
-    }
-  } catch(e) {}
-
-  // Set status
-  if (cfg.url && cfg.token) {
-    shSetStatus('connected');
-  } else {
-    shSetStatus('disconnected');
-  }
-
-  // Start auto-refresh if enabled
-  if (localStorage.getItem(SH_AUTO_KEY) === '1' && cfg.url && cfg.token) {
-    shStartAuto();
-  }
+function shInit() {  // Sync Hub tab removed — make sure no background auto-refresh keeps running
+  try { shStopAuto(); localStorage.setItem(SH_AUTO_KEY, '0'); } catch (e) {}
 }
 
 function shFormatRelative(ts) {
@@ -19791,65 +19385,7 @@ function shShowSetupGuide() {
 
 // ═══ END SYNC HUB ════════════════════════════════════════════
 
-async function syncFromSheet(cat) {
-  const links  = getGsheetLinks();
-  const sheetUrl = links[cat];
-  if (!sheetUrl) { showAmToast('No sheet linked — click Edit Link first', '#f59e0b'); return; }
-
-  gsSyncCat = cat;
-
-  // Set button to loading state
-  const btn  = document.getElementById('gsheetSyncBtn_' + cat);
-  const icon = document.getElementById('gsSyncIcon_' + cat);
-  if (btn) btn.classList.add('syncing');
-  if (icon) icon.classList.add('gs-spin');
-
-  try {
-    const rows = await gsFetchSheet(sheetUrl);
-    if (!rows || rows.length === 0) {
-      gsShowModal(cat, [], 0, 'No data rows found. Make sure the sheet has data and is shared publicly (File → Share → Publish to web).');
-      return;
-    }
-
-    // Store for diagnostics
-    window._gsRawRows = rows;
-    console.log('[Sync] ' + rows.length + ' rows fetched from ' + cat + ' sheet');
-
-    // ── DIRECT DYNAMIC REBUILD — replace table to match sheet ──
-    const result = gsDynamicRebuildOnSync(cat, rows);
-    if (!result.success) {
-      gsShowModal(cat, [], 0, result.error || 'Could not rebuild table from sheet data');
-      return;
-    }
-
-    // Update badge
-    const badge = document.getElementById('gsheetBadge_' + cat);
-    if (badge) badge.innerHTML = `<svg width="8" height="8" viewBox="0 0 8 8" fill="#34d399"><circle cx="4" cy="4" r="4"/></svg> Synced`;
-
-    // Save sync timestamp
-    try {
-      const ts = JSON.parse(localStorage.getItem(GS_SYNC_KEY)||'{}');
-      ts[cat] = { at: new Date().toISOString(), rows: result.rows, updated: result.rows * result.columns, matchedRows: result.rows };
-      localStorage.setItem(GS_SYNC_KEY, JSON.stringify(ts));
-    } catch(e) {}
-
-    // Log success
-    if (typeof syncLog === 'function') {
-      syncLog('success', `${cat} table rebuilt — ${result.rows} rows × ${result.columns} columns from sheet`);
-    }
-
-    showAmToast(`✓ ${cat} table rebuilt — ${result.rows} rows from sheet`, '#00c896');
-
-    // Refresh sync cards if visible
-    if (typeof syncCardRefresh === 'function') syncCardRefresh();
-
-  } catch(err) {
-    gsShowModal(cat, null, 0, err.message);
-  } finally {
-    if (btn) btn.classList.remove('syncing');
-    if (icon) icon.classList.remove('gs-spin');
-  }
-}
+/* syncFromSheet → see structured sync engine */
 
 // ── Show preview with raw data + column mapping ──────────────
 function gsShowPreviewWithRaw(cat, changes, rows) {
@@ -20855,145 +20391,10 @@ function syncTimeAgo(date) {
 }
 
 // ── Sync All — runs all 3 categories in parallel ─────────────
-async function syncAll() {
-  if (syncInProgress) return;
-  syncInProgress = true;
-
-  const btn  = document.getElementById('syncAllBtn');
-  const icon = document.getElementById('syncAllIcon');
-  if (btn) { btn.style.opacity = '.65'; btn.style.cursor = 'wait'; btn.disabled = true; btn.querySelector('span,div')?.style; }
-  if (icon) icon.classList.add('gs-spin');
-
-  const links = getGsheetLinks();
-  const cats  = ['exterior','interior','amenities'];
-  const eligible = cats.filter(c => links[c]);
-
-  if (eligible.length === 0) {
-    syncShowStatus('error', '⚠ No sheets linked yet. Go to each tab (Exterior, Interior, Amenities) and link a Google Sheet first.');
-    syncLog('error', 'Sync All aborted — no sheets linked');
-    if (btn) { btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.disabled = false; }
-    if (icon) icon.classList.remove('gs-spin');
-    syncInProgress = false;
-    return;
-  }
-
-  syncShowStatus('info', `🔄 Syncing ${eligible.length} category${eligible.length > 1 ? 'ies' : ''}…`);
-  syncLog('info', `Starting Sync All for ${eligible.join(', ')}`);
-
-  // Update each card to "Syncing…"
-  eligible.forEach(cat => {
-    const statusEl = document.getElementById('syncCardStatus_' + cat);
-    if (statusEl) {
-      statusEl.textContent = 'Syncing…';
-      statusEl.style.background = 'rgba(245,158,11,.12)';
-      statusEl.style.borderColor = 'rgba(245,158,11,.3)';
-      statusEl.style.color = '#f59e0b';
-    }
-  });
-
-  // Run all syncs in parallel
-  const results = await Promise.allSettled(
-    eligible.map(cat => syncCategoryAuto(cat))
-  );
-
-  let successCount = 0, errorCount = 0;
-  const summary = [];
-
-  results.forEach((r, i) => {
-    const cat = eligible[i];
-    const statusEl = document.getElementById('syncCardStatus_' + cat);
-
-    if (r.status === 'fulfilled' && r.value && r.value.success) {
-      successCount++;
-      summary.push(`✓ ${cat}: ${r.value.updated} cells updated (${r.value.matched} rows)`);
-      if (statusEl) {
-        statusEl.textContent = '✓ Synced';
-        statusEl.style.background = 'rgba(0,200,150,.12)';
-        statusEl.style.borderColor = 'rgba(0,200,150,.3)';
-        statusEl.style.color = '#00c896';
-      }
-      syncLog('success', `${cat} synced — ${r.value.updated} cells updated`);
-    } else {
-      errorCount++;
-      const msg = r.value?.error || r.reason?.message || 'Unknown error';
-      summary.push(`✗ ${cat}: ${msg.substring(0, 80)}`);
-      if (statusEl) {
-        statusEl.textContent = '✗ Failed';
-        statusEl.style.background = 'rgba(255,107,107,.12)';
-        statusEl.style.borderColor = 'rgba(255,107,107,.3)';
-        statusEl.style.color = '#ff6b6b';
-      }
-      syncLog('error', `${cat} failed — ${msg}`);
-    }
-  });
-
-  // Final status
-  if (errorCount === 0) {
-    syncShowStatus('success', `✅ Sync complete — all ${successCount} categories updated.<br><small>${summary.join(' · ')}</small>`);
-  } else if (successCount > 0) {
-    syncShowStatus('partial', `⚠ Partial sync — ${successCount} succeeded, ${errorCount} failed.<br><small>${summary.join(' · ')}</small>`);
-  } else {
-    syncShowStatus('error', `❌ All syncs failed.<br><small>${summary.join(' · ')}</small><br><br><strong>Most common fix:</strong> Open each Google Sheet → File → Share → <strong>Publish to web</strong>.`);
-  }
-
-  if (btn)  { btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.disabled = false; }
-  if (icon) icon.classList.remove('gs-spin');
-  syncInProgress = false;
-
-  // Refresh cards
-  syncCardRefresh();
-}
+/* syncAll → see structured sync engine */
 
 // ── Auto-sync a single category (no preview modal) ────────────
-async function syncCategoryAuto(cat) {
-  try {
-    const links = getGsheetLinks();
-    const url = links[cat];
-    if (!url) return { success: false, error: 'No sheet linked' };
-
-    const rows = await gsFetchSheet(url);
-    if (!rows || rows.length === 0) {
-      return { success: false, error: 'Sheet returned no rows' };
-    }
-
-    // ── DYNAMIC REBUILD — replaces table with sheet's columns and rows ──
-    const rebuildResult = gsDynamicRebuildOnSync(cat, rows);
-    if (!rebuildResult.success) {
-      return { success: false, error: rebuildResult.error };
-    }
-
-    const report = {
-      updated: rebuildResult.rows * rebuildResult.columns,
-      matchedRows: rebuildResult.rows,
-      totalChanges: rows.length,
-    };
-
-    // Save to cache
-    try {
-      const ts = JSON.parse(localStorage.getItem(GS_SYNC_KEY)||'{}');
-      ts[cat] = {
-        at: new Date().toISOString(),
-        rows: changes.length,
-        updated: report.updated,
-        matchedRows: report.matchedRows,
-      };
-      localStorage.setItem(GS_SYNC_KEY, JSON.stringify(ts));
-    } catch(e) {}
-
-    // Update badge in the category tab
-    const badge = document.getElementById('gsheetBadge_' + cat);
-    if (badge) badge.innerHTML = `<svg width="8" height="8" viewBox="0 0 8 8" fill="#34d399"><circle cx="4" cy="4" r="4"/></svg> Synced`;
-
-    return {
-      success: true,
-      updated: report.updated,
-      matched: report.matchedRows,
-      total: changes.length
-    };
-  } catch(err) {
-    return { success: false, error: err.message };
-  }
-}
+/* syncCategoryAuto → see structured sync engine */
 
 // ── Silent apply (no modal, just returns report) ──────────────
 function gsApplySilently(cat, changes) {
@@ -21631,9 +21032,8 @@ async function masterSync() {
     // STEP 1: Pull fresh data from Google Sheet
     setProgress(10, 'Fetching Google Sheet data...');
     try {
-      if (typeof shSyncNow === 'function') {
-        await shSyncNow();
-        syncOk = true;
+      if (typeof vsSyncAll === 'function' && Object.keys(vsGetSources()).length) {
+        const vr = await vsSyncAll(); syncOk = !!(vr && vr.ok);
       }
     } catch(e) { console.warn('Sheet sync failed, using cached data', e); }
     await new Promise(function(r) { setTimeout(r, 400); });
@@ -21814,6 +21214,7 @@ function mcrEstimateData(cat) {
   };
 
   var cfg = config[cat];
+  try { const K = (window.vsCountsCache || (typeof vsCounts === 'function' ? vsCounts() : null)); if (K && K[cat] && K[cat].total) { const k = K[cat]; const f = k.done / Math.max(1, cfg.baseline.reduce((s, x) => s + x, 0)); cfg.baseline = cfg.baseline.map(x => Math.round(x * f)); cfg.total = k.total; cfg.done = k.done; cfg.wip = k.wip + k.review; cfg.hold = k.hold; } } catch (e) {}
 
   // If live rows exist, re-derive estimates
   if (rows.length > 0) {
@@ -21891,9 +21292,12 @@ function mcrRender(cat) {
   }
 
   // Draw chart using Chart.js
+  // remove any earlier fallback and make sure the real canvas is visible
+  canvas.style.display = '';
+  canvas.parentElement.querySelectorAll('.mcr-fallback').forEach(function(f) { f.remove(); });
   if (typeof Chart === 'undefined') {
-    // Chart.js not loaded — show simple HTML bar chart fallback
-    mcrRenderFallback(cat, data, canvas.parentElement);
+    // Chart.js loads on demand — draw once it arrives; plain fallback only if it cannot load
+    if (window.mcrChartLoadFailed) mcrRenderFallback(cat, data, canvas.parentElement); else mcrInit(cat);
     return;
   }
 
@@ -22025,7 +21429,7 @@ function mcrRenderFallback(cat, data, container) {
   var el = container.querySelector('canvas');
   if (el) el.style.display = 'none';
   container.insertAdjacentHTML('beforeend',
-    '<div style="display:flex;align-items:flex-end;gap:3px;padding:8px 0;width:100%">' + bars + '</div>');
+    '<div class="mcr-fallback" style="display:flex;align-items:flex-end;gap:3px;padding:8px 0;width:100%">' + bars + '</div>');
 }
 
 // ── Render all 3 on sync update ──
@@ -22047,9 +21451,699 @@ function mcrInit(cat) {
     s.id = 'chartjs_cdn';
     s.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
     s.onload = function() { mcrRenderAll(); };
+    s.onerror = function() { window.mcrChartLoadFailed = true; mcrRenderAll(); };
     document.head.appendChild(s);
   }
 }
+
+
+// ═══════════════════════════════════════════════════════════════════════
+// ONE-CLICK SHEET SYNC — pulls the 4 studio Google Sheets, rebuilds the
+// structured Exterior (Arbaz + Vikas), Interior and Amenities tables, then
+// refreshes every view that reads them. Last good sync is cached locally.
+// ═══════════════════════════════════════════════════════════════════════
+var VS_NAME_ALIAS = { 'mirza ali': 'mirza', 'vaibhav m': 'vaibhav', 'abhi': 'abhinav', 'saksham': 'shaksam', 'shaksham': 'shaksam', 'sakham': 'shaksam', 'sksham': 'shaksam',
+  'shaizad': 'shahzad', 'akhar': 'akhtar', 'hamaza': 'hamza', 'maynk': 'mayank', 'mayannk': 'mayank', 'pradeep': 'pradeep', 'prateek singh': 'prateek singh', 'anubhav das': 'anubhav das', 'rohit massey': 'rohit massey' };
+function vsSplitNames(txt) {
+  const known = new Set((typeof artistData !== 'undefined' ? artistData : []).map(a => a.name.toLowerCase()).concat(Object.values(VS_NAME_ALIAS)));
+  const norm = s => { s = s.trim().toLowerCase(); return VS_NAME_ALIAS[s] || s; };
+  const out = [];
+  String(txt || '').split(/[,·+\/&\-–]|\band\b/i).map(s => s.trim()).filter(s => s && s !== '—').forEach(tok => {
+    const n = norm(tok);
+    if (known.has(n) || !/\s/.test(tok)) { out.push(n); return; }
+    const parts = tok.split(/\s+/).map(norm);
+    if (parts.every(p => known.has(p))) out.push(...parts); else out.push(n);
+  });
+  return [...new Set(out.filter(n => n.length > 2 && /^[a-z][a-z .]*$/.test(n)))];
+}
+var VS_SRC_KEY = 'vstudio_sync_sources', VS_CACHE_KEY = 'vstudio_sync_cache', VS_META_KEY = 'vstudio_sync_meta';
+var VS_SOURCES = [
+  { key: 'arbaz',     label: 'Exterior — Arbaz team',  tab: 'exterior',  color: '#38bdf8' },
+  { key: 'vikas',     label: 'Exterior — Vikas team',  tab: 'exterior',  color: '#f97316' },
+  { key: 'interior',  label: 'Interior (BHK units)',   tab: 'interior',  color: '#a89fff' },
+  { key: 'amenities', label: 'Amenities tracking',     tab: 'amenities', color: '#00c896' }
+];
+var vsSyncing = false;
+var VS_NAME_FIX = { 'narag (bandra)': 'Narang (Bandra)', 'kalptaru hrusikesh': 'Kalpataru Hrushikesh', 'kalptaru premiera': 'Kalpataru Primera', 'runwall 25': 'Runwal 25',
+  'adami msrdc': 'Adani MSRDC', 'embassy one banlore': 'Embassy One Bangalore', 'godrej': 'Godrej', 'l&t wagale (revised set)': 'L&T Wagale', 'hiranandani bayview gorai(revised set)': 'Hiranandani Bayview',
+  'aurum seven': 'Aurum Seven', 'l&t data center': 'L&T Data Center', 'l&t banglore': 'L&T Bangalore 2026', 'today group (airoli)': 'Today Group (Airoli)', 'today group (juinagar)': 'Today Group (Juinagar)',
+  'tvs rayasandra chennai': 'TVS Rayasandra Chennai', 'purwankara - thane': 'Purwankara – Thane', 'purwankara - pali hill': 'Purwankara – Pali Hill', 'trans india': 'Trans India', 'emabssy group': 'Embassy Group', 'k rheja': 'K Raheja', 'supreme bouluevard': 'Supreme Boulevard', 'bombay – reality': 'Bombay Reality', 'godrej (hyd)': 'Godrej (Hyderabad)', 'todays group (airoli)': 'Todays Group (Airoli)', 'adani thane (phase-2)': 'Adani Thane Phase-2', 'aurum prive': 'Aurum Privé', 'kalpataru worli (dream home)': 'Kalpataru Worli (Dream Home)', 'hoh bayview (gorai)': 'HOH Bayview (Gorai)', 'purwankara – thane': 'Purwankara – Thane', 'purwankara – pali hill': 'Purwankara – Pali Hill' };
+var VS_AMEN_NAMES = { 'L&T BANGLORE': 'L&T Bangalore', 'Rustomjee Dombiwali': 'Rustomjee Dombivali', 'L&T THANE': 'L&T Thane', 'NAHAR': 'Nahar', 'L&T MAHIM': 'L&T Mahim', 'KALPATARU WORLI': 'Kalpataru Worli',
+  'BHOOMI': 'Bhoomi', 'BALMORAL': 'Rustomjee Balmoral', 'MEHTA': 'Mehta', 'CRESCENT': 'Rustomjee Crescent', 'JP MATUNGA': 'JP Matunga', 'KALPATARU ETERNIA': 'Kalpataru Eternia', 'VAKRATUNDA': 'Vakratunda',
+  'HRUSHIKESH': 'Kalpataru Hrushikesh', 'MAA SHARDA': 'Maa Sharada', 'NARANG GOREGAON': 'Narang Goregaon', 'MALAD': 'L&T Malad', 'LNT WAGLE': 'L&T Wagale', 'Runwal 25 hours': 'Runwal 25 Hours',
+  'Primera': 'Kalpataru Primera', 'Hariniketan': 'KL Hariniketan' };
+
+function vsEsc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch])); }
+function vsClean(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+function vsProjName(raw) {
+  let n = vsClean(raw).replace(/\s*\(\s*hold\s*\)\s*/i, ' ');
+  for (let i = 0; i < 3; i++) n = n.replace(/[\s\-–]*\b20\d\d\b\s*$/, '').trim();
+  n = n.replace(/\(\s+/g, '(').replace(/\s+\)/g, ')').replace(/(\S)\(/g, '$1 (').replace(/\s+-\s+/g, ' – ').replace(/\s+-$/, '').trim();
+  return VS_NAME_FIX[n.toLowerCase()] || n;
+}
+
+// ── sources (with migration from the old single-link-per-tab store) ──
+function vsGetSources() {
+  let s = {}; try { s = JSON.parse(localStorage.getItem(VS_SRC_KEY) || '{}') || {}; } catch (e) {}
+  try { const old = JSON.parse(localStorage.getItem('vstudio_gsheet_links') || '{}') || {};   // links saved from the per-tab buttons
+    if (!s.interior && old.interior) s.interior = old.interior; if (!s.amenities && old.amenities) s.amenities = old.amenities; if (!s.arbaz && old.exterior) s.arbaz = old.exterior; } catch (e) {}
+  return s;
+}
+function vsSaveSources(s) { try { localStorage.setItem(VS_SRC_KEY, JSON.stringify(s)); } catch (e) {} }
+function vsMeta() { try { return JSON.parse(localStorage.getItem(VS_META_KEY) || '{}') || {}; } catch (e) { return {}; } }
+function vsSetMeta(k, v) { const m = vsMeta(); m[k] = v; try { localStorage.setItem(VS_META_KEY, JSON.stringify(m)); } catch (e) {} }
+
+// ── fetching ──
+function vsParseCSV(text) {
+  const rows = []; let row = [], cur = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) { if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === ',') { row.push(cur); cur = ''; }
+    else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cur); rows.push(row); row = []; cur = ''; }
+    else cur += ch;
+  }
+  if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+function vsSheetUrls(url) {
+  url = String(url || '').trim();
+  const gid = (url.match(/[#&?]gid=(\d+)/) || [])[1] || '0';
+  const pub = url.match(/\/spreadsheets\/d\/e\/([\w-]+)/);
+  if (pub) return [`https://docs.google.com/spreadsheets/d/e/${pub[1]}/pub?gid=${gid}&single=true&output=csv`];
+  const id = (url.match(/\/spreadsheets\/d\/([\w-]+)/) || [])[1];
+  if (!id) return [];
+  return [`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&headers=0&gid=${gid}`,
+          `https://docs.google.com/spreadsheets/d/${id}/export?format=csv&gid=${gid}`];
+}
+async function vsFetchGrid(url) {
+  const tries = vsSheetUrls(url);
+  if (!tries.length) throw new Error('Not a Google Sheets link — copy the full URL from the sheet’s address bar.');
+  const errs = [];
+  for (const u of tries) {
+    try {
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 20000);
+      const r = await fetch(u, { cache: 'no-store', signal: ctl.signal }); clearTimeout(t);
+      if (!r.ok) { errs.push(r.status); continue; }
+      const txt = await r.text();
+      if (/^\s*<(!doctype|html)/i.test(txt)) { errs.push('login page'); continue; }
+      const grid = vsParseCSV(txt);
+      if (grid.length > 1) return grid;
+      errs.push('empty');
+    } catch (e) { errs.push(e.name === 'AbortError' ? 'timeout' : 'blocked'); }
+  }
+  throw new Error('Could not read the sheet (' + errs.join(', ') + '). Share it as “Anyone with the link — Viewer”, or use File → Share → Publish to web → CSV and paste that link.');
+}
+
+// ── parsers (match the studio sheet layouts) ──
+function vsHeaderIdx(grid, first) {
+  const h = grid.findIndex(r => r && vsClean(r[0]).toLowerCase() === first.toLowerCase());
+  return h < 0 ? 0 : h;
+}
+function vsCol(head, tests, fallback, from) {
+  for (let i = from || 0; i < head.length; i++) { const h = vsClean(head[i]).toLowerCase(); if (tests.some(t => h.includes(t))) return i; }
+  return fallback;
+}
+function vsParseArbaz(grid) {
+  const h = vsHeaderIdx(grid, 'Project Name'), H = grid[h] || [];
+  const C = { name: 0, scope: vsCol(H, ['tower'], 1), cad: vsCol(H, ['layout', 'cad'], 2), recv: vsCol(H, ['received'], 4), start: vsCol(H, ['start'], 5), max: vsCol(H, ['max'], 6),
+    art: vsCol(H, ['artist'], 7), prog: vsCol(H, ['status'], 8), ur: vsCol(H, ['unreal'], 9), comp: vsCol(H, ['complet'], 10), rev: vsCol(H, ['revis'], 11), pri: vsCol(H, ['priority'], -1) };
+  const out = []; let p = null;
+  const g = (r, k) => k >= 0 ? vsClean(r[k]) : '';
+  grid.slice(h + 1).forEach(r => {
+    if (!r || !r.some(x => vsClean(x))) return;
+    if (g(r, C.name)) { p = { lead: 'Arbaz', name: vsProjName(g(r, C.name)), scope: [], cad: [], recv: [], start: [], max: [], arts: [], prog: [], ur: [], comp: [], rev: [], pri: [] }; out.push(p); }
+    if (!p) return;
+    ['scope', 'cad', 'recv', 'start', 'max', 'prog', 'ur', 'comp', 'rev', 'pri'].forEach(k => { const v = g(r, C[k]); if (v) p[k].push(v); });
+    g(r, C.art).split(/[,&\/]| and /i).map(vsClean).filter(Boolean).forEach(a => { if (!p.arts.some(x => x.toLowerCase() === a.toLowerCase())) p.arts.push(a); });
+  });
+  return out.map(vsNormExt);
+}
+function vsParseVikas(grid) {
+  const h = vsHeaderIdx(grid, 'Project Name'), H = grid[h] || [];
+  const C = { name: 0, scope: vsCol(H, ['tower'], 1), cad: vsCol(H, ['layout', 'cad'], 2), start: vsCol(H, ['start', 'strat'], 4), recv: vsCol(H, ['received'], 5), max: vsCol(H, ['max'], 6),
+    mstat: vsCol(H, ['modeling status'], 7), art: vsCol(H, ['modeling artist'], 8), ur: vsCol(H, ['unreal'], 9), comp: vsCol(H, ['complete'], 10), jr: vsCol(H, ['jr'], 11), rev: vsCol(H, ['revision'], 14) };
+  const out = []; let p = null;
+  const g = (r, k) => k >= 0 ? vsClean(r[k]) : '';
+  grid.slice(h + 1).forEach(r => {
+    if (!r) return;
+    if (g(r, C.name)) { p = { lead: 'Vikas', name: vsProjName(g(r, C.name)), scope: [], cad: [], recv: [], start: [], max: [], prog: [], arts: [], jr: [], ur: [], comp: [], rev: [], pri: [] }; out.push(p); }
+    if (!p) return;
+    ['scope', 'cad', 'recv', 'start', 'max', 'ur', 'comp', 'rev'].forEach(k => { const v = g(r, C[k]); if (v) p[k].push(v); });
+    const ms = g(r, C.mstat); if (ms) p.prog.push(ms);
+    [[C.art, 'arts'], [C.jr, 'jr']].forEach(([ci, k]) => g(r, ci).split(/[,&\/]/).map(vsClean).filter(Boolean).forEach(a => { if (!p[k].some(x => x.toLowerCase() === a.toLowerCase())) p[k].push(a); }));
+  });
+  return out.map(vsNormExt);
+}
+function vsNormExt(p) {
+  const any = (arr, re) => arr.some(x => re.test(x));
+  const maxAll = p.max.join(' '), urAll = p.ur.join(' ');
+  let bl;
+  if (/hold/i.test(maxAll) || /hold/i.test(urAll)) bl = 'HOLD';
+  else if (any(p.max, /complet/i)) bl = 'Completed';
+  else if (any(p.max, /new file|pending/i)) bl = 'New File Pending';
+  else if (any(p.max, /wip|work in progress|progress/i)) bl = 'Work in Progress';
+  else if (any(p.max, /^max$/i)) bl = 'WIP (3ds Max)';
+  else if (p.max.length) bl = p.max[0];
+  else bl = (p.arts.length || p.prog.length || p.ur.length) ? 'Work in Progress' : 'Not Started';
+  if (p.lead === 'Vikas' && /^work in progress$/i.test(bl)) bl = 'WIP';
+  let ur = /hold/i.test(urAll) ? 'HOLD' : any(p.ur, /export/i) ? 'Exported' : any(p.ur, /revision/i) ? 'WIP (Revision)' : any(p.ur, /wip/i) ? 'WIP' : any(p.ur, /pending/i) ? 'Pending' : '—';
+  const pct = (p.prog.find(x => /%/.test(x)) || '').replace(/\s+/g, '');
+  const note = (p.cad.find(x => /pending|not |partial|waiting/i.test(x)) || '') + (p.prog.find(x => /[a-z]{4}/i.test(x) && !/complet/i.test(x)) ? (p.cad.length ? ' · ' : '') + p.prog.find(x => /[a-z]{4}/i.test(x) && !/complet/i.test(x)) : '');
+  return { lead: p.lead, name: p.name, scope: p.scope.slice(0, 3).join(' + ') || '—', cad: p.cad[0] || '—', recv: p.recv.join('; ') || '—', start: p.start.join('; ') || '—',
+    artists: [...p.arts, ...(p.lead === 'Vikas' && !p.arts.some(a => /vikas/i.test(a)) ? [] : [])].join(', ') || '—', jr: (p.jr || []).join(', ') || '—',
+    blender: bl, pct: pct || (bl === 'Completed' ? '100%' : ''), unreal: ur, completed: p.comp.join('; ') || '—', revisions: p.rev.join(', '), priority: (p.pri[0] || '').toUpperCase(), note: note.trim() };
+}
+
+function vsDate(s) {  // "01-06-26" / "30-04-2026" / "1/6/2026" → "01-06-26"
+  const m = vsClean(s).match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{2,4})$/); if (!m) return '';
+  return m[1].padStart(2, '0') + '-' + m[2].padStart(2, '0') + '-' + m[3].slice(-2);
+}
+function vsParseInterior(grid) {
+  const h = vsHeaderIdx(grid, 'Project Name'), H = grid[h] || [];
+  const C = { name: 0, unit: vsCol(H, ['unit'], 1), recv: vsCol(H, ['received'], 4), start: vsCol(H, ['start'], 5), bl: vsCol(H, ['max', 'blender'], 6), blArt: 7, exp: vsCol(H, ['export'], 8),
+    ur: vsCol(H, ['unreal'], 9), urArt: 10, rev: vsCol(H, ['review'], 11), st: vsCol(H, ['project status'], 13), jr: vsCol(H, ['jr'], 14), comp: vsCol(H, ['complete'], 15) };
+  const g = (r, k) => k >= 0 ? vsClean(r[k]) : '';
+  const out = []; let p = null;
+  grid.slice(h + 1).forEach(r => {
+    if (!r || !r.some(x => vsClean(x))) return;
+    if (g(r, C.name)) { const raw = g(r, C.name); p = { name: vsProjName(raw), year: (raw.match(/\b(20\d\d)\b/) || [])[1] || '', hold: /\bhold\b/i.test(raw), units: [] }; out.push(p); }
+    if (!p || !g(r, C.unit)) return;
+    const bl = g(r, C.bl), ur = g(r, C.ur), st = g(r, C.st);
+    const dates = [['Received', C.recv], ['Start', C.start], ['Export', C.exp], ['Review', C.rev], ['Completed', C.comp]].map(([l, k]) => vsDate(g(r, k)) ? l + ' ' + vsDate(g(r, k)) : '').filter(Boolean);
+    const blD = /^done$/i.test(bl) ? 'Done ✓' : /hold/i.test(bl) ? 'HOLD' : /wip/i.test(bl) ? 'WIP' : bl || '—';
+    let urD = /^done$/i.test(ur) ? 'Done ✓' : /^1 feedback$/i.test(ur) ? '1 Feedback' : /feedback/i.test(ur) ? 'Feedback' : /structure/i.test(ur) ? 'Structure Update' : /^max$/i.test(ur) ? 'MAX' : /wip/i.test(ur) ? 'WIP' : ur || '—';
+    if (/ss shared/i.test(st)) urD = 'SS Shared'; else if (/review pending/i.test(st)) urD = 'Review Pending'; else if (/final pending/i.test(st)) urD = 'Final Pending'; else if (/rework/i.test(st)) urD = 'Rework';
+    const hold = p.hold || /hold/i.test(bl + ' ' + st);
+    const tl = hold && !(blD === 'Done ✓' && urD === 'Done ✓') ? '⬤ On Hold' : (blD === 'Done ✓' && urD === 'Done ✓') ? '● On Track' : /SS Shared|Review|Final|Rework|Feedback|Structure/.test(urD) ? '◆ At Risk' : /WIP|MAX/.test(blD + urD) ? '◆ In Progress' : '● On Track';
+    p.units.push({ unit: g(r, C.unit), blArt: g(r, C.blArt) || '—', bl: blD, urArt: g(r, C.urArt) || '—', ur: urD, jr: g(r, C.jr), tl, notes: [st && !/^done$/i.test(st) ? st : '', ...dates].filter(Boolean).join(' · ') });
+  });
+  out.forEach(p => { if (!p.units.length) p.units.push({ unit: '— (units not listed yet)', blArt: '—', bl: '—', urArt: '—', ur: '—', jr: '', tl: p.hold ? '⬤ On Hold' : '● On Track', notes: '' }); });
+  return out;
+}
+
+function vsParseAmenities(grid) {
+  const R = grid.map(r => (r || []).map(vsClean));
+  const WORK = { 'completed': 'Completed', 'work in progress': 'WIP', 'not started': 'Not Started', 'done': 'Completed', 'today complete': 'Completed' };
+  const rev = v => { const l = v.toLowerCase(); return /approved|aprooved/.test(l) ? 'Approved' : /major redesign/.test(l) ? 'Redesign' : /review pending/.test(l) ? 'Review Pending' : /on hold/.test(l) ? 'On Hold' : /feedback/.test(l) ? 'Feedback' : null; };
+  const isDate = v => /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v);
+  const iso = v => { const [m, d, y] = v.split('/').map(Number); return `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`; };
+  const out = []; let cur = null, section = '', hasAss = false;
+  R.forEach((r, i) => {
+    if (!r.length || !r.some(Boolean)) return;
+    const c0 = r[0], rest = r.slice(1);
+    const win = R.slice(i + 1, i + 7).flat();
+    if (c0 && !rest.some(Boolean) && !isDate(c0) && (win.includes('Amenities') || win.includes('Status') || (c0 === c0.toUpperCase() && /[A-Z]/.test(c0) && !/FLOOR/.test(c0)))) {
+      cur = { raw: c0, name: VS_AMEN_NAMES[c0] || c0, items: [], dates: [] }; out.push(cur); section = ''; hasAss = false; return;
+    }
+    if (!cur) return;
+    if (c0 === 'Amenities') { hasAss = r.includes('Assignee'); return; }
+    if (!c0 || isDate(c0)) { r.filter(isDate).forEach(d => cur.dates.push(iso(d))); return; }
+    if ((c0.endsWith(':') || /floor/i.test(c0)) && !rest.some(v => WORK[v.toLowerCase()] || rev(v))) { section = c0.replace(/:$/, '').replace(/\b\w/g, m => m.toUpperCase()).replace(/\B\w+/g, m => m.toLowerCase()); return; }
+    const assignee = hasAss && rest[0] && !WORK[rest[0].toLowerCase()] && !rev(rest[0]) ? rest[0] : '';
+    const cells = rest.filter(v => WORK[v.toLowerCase()] || rev(v));
+    const work = cells.filter(v => WORK[v.toLowerCase()]).map(v => WORK[v.toLowerCase()]);
+    const reviews = cells.map(rev).filter(Boolean);
+    const last = reviews[reviews.length - 1] || null;
+    let after = [];
+    if (last) { const idx = cells.map(rev).lastIndexOf(last); after = cells.slice(idx + 1).filter(v => WORK[v.toLowerCase()]).map(v => WORK[v.toLowerCase()]); }
+    let status;
+    if (last === 'Approved') status = 'Approved';
+    else if (last === 'On Hold') status = 'On Hold';
+    else if (last === 'Feedback' || last === 'Redesign') { status = (!after.length || after.some(a => a === 'WIP' || a === 'Not Started')) ? 'Revision WIP' : 'Revision Delivered'; if (last === 'Redesign' && status === 'Revision WIP') status = 'Redesign WIP'; }
+    else if (last === 'Review Pending') status = 'Review Pending';
+    else if (work.length >= 2 && work.slice(0, 2).every(w => w === 'Completed')) status = 'Delivered';
+    else if (work.length) status = 'WIP';
+    else status = 'Not Started';
+    let nm = c0.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+    if (nm === nm.toUpperCase() || nm === nm.toLowerCase()) nm = nm.split(' ').map(w => /^(T\d|GF|R\d)$/i.test(w) ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+    cur.items.push({ name: nm, section, assignee, max: work[0] || '—', unreal: work[1] || '—', rounds: reviews.length, status });
+  });
+  return out.filter(p => p.items.length).map(p => ({ ...p, dates: p.dates.sort() }));
+}
+
+// ── table builders (same markup the rest of the dashboard reads) ──
+function vsTlExt(bl, ur) {
+  const b = bl.toLowerCase(), u = ur.toLowerCase();
+  if (/hold/.test(b + u)) return ['⬤ Delayed', '#f87171'];
+  if (/complet/.test(b) && /export/.test(u)) return ['● On Track', '#34d399'];
+  if (/complet/.test(b)) return ['◆ At Risk', '#fbbf24'];
+  if (/wip|progress|max/.test(b)) return ['◆ In Progress', '#fbbf24'];
+  if (/not started/.test(b)) return ['○ Not Started', 'var(--muted)'];
+  return ['◆ At Risk', '#fbbf24'];
+}
+function vsBlCol(s) { s = s.toLowerCase(); return /complet/.test(s) ? '#34d399' : /hold/.test(s) ? '#f87171' : /wip|progress|pending|max/.test(s) ? '#fbbf24' : 'var(--muted)'; }
+function vsUrCol(s) { s = s.toLowerCase(); return /export/.test(s) ? '#34d399' : /hold/.test(s) ? '#f87171' : /wip|pending/.test(s) ? '#fbbf24' : 'var(--muted)'; }
+function vsBadge(txt, rgb, col) { return ` <span style="font-size:8px;background:rgba(${rgb},0.15);color:${col};border:1px solid rgba(${rgb},0.25);padding:1px 5px;border-radius:4px">${txt}</span>`; }
+function vsArbazRow(p) {
+  const [tl, tc] = vsTlExt(p.blender, p.unreal);
+  const badges = (/hold/i.test(p.blender + p.unreal) ? vsBadge('HOLD', '248,113,113', '#f87171') : '');
+  const pri = p.priority ? (p.priority === 'HIGH' ? '🔴 ' : p.priority === 'MEDIUM' ? '🔵 ' : '') + vsEsc(p.priority) : '—';
+  const comp = p.revisions ? `<td style="padding:9px 12px"><div style="font-size:11px;color:var(--muted)">${vsEsc(p.completed)}</div><div style="font-size:9px;color:#c4b5fd;margin-top:2px">${vsEsc(p.revisions)}</div></td>`
+                           : `<td style="padding:9px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.completed)}</td>`;
+  return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+          <td style="padding:9px 12px"><div style="font-size:12px;font-weight:600;color:var(--text)">${vsEsc(p.name)}${badges}</div><div style="font-size:10px;color:var(--muted);margin-top:2px">${vsEsc(p.scope)}</div></td>
+          <td style="padding:9px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.cad)}</td>
+          <td style="padding:9px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.recv)}</td>
+          <td style="padding:9px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.artists)}</td>
+          <td style="padding:9px 12px"><div style="font-size:11px;font-weight:600;color:${vsBlCol(p.blender)}">${vsEsc(p.blender)}</div><div style="font-size:10px;color:var(--muted)">${vsEsc(p.pct)}</div></td>
+          <td style="padding:9px 12px;font-size:11px;color:${vsUrCol(p.unreal)};font-weight:600">${vsEsc(p.unreal)}</td>
+          ${comp}
+          <td style="padding:9px 12px;font-size:11px;color:var(--muted)">${pri}</td>
+          <td style="padding:9px 12px;font-size:12px;color:${tc};font-weight:600;white-space:nowrap">${tl}</td>
+        </tr>`;
+}
+function vsVikasRow(p) {
+  const [tl, tc] = vsTlExt(p.blender, p.unreal);
+  const badges = /wip|max/i.test(p.blender) ? vsBadge('WIP', '251,191,36', '#fbbf24') : '';
+  return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+                <td style="padding:10px 12px"><div style="font-size:12px;font-weight:700;color:var(--text)">${vsEsc(p.name)}${badges}</div><div style="font-size:10px;color:var(--muted);margin-top:2px">${vsEsc(p.scope)}</div>${p.note ? `<div style="font-size:9px;color:var(--muted);margin-top:2px;font-style:italic">${vsEsc(p.note.slice(0, 60))}</div>` : ''}</td>
+                <td style="padding:10px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.cad)}</td>
+                <td style="padding:10px 12px;font-size:11px;color:var(--muted);white-space:nowrap">${vsEsc(p.recv)}</td>
+                <td style="padding:10px 12px;font-size:11px;color:var(--muted);white-space:nowrap">${vsEsc(p.start)}</td>
+                <td style="padding:10px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.artists)}</td>
+                <td style="padding:10px 12px"><div style="font-size:11px;font-weight:600;color:${vsBlCol(p.blender)}">${vsEsc(p.blender)}</div><div style="font-size:10px;color:var(--muted)">${vsEsc(p.pct)}</div></td>
+                <td style="padding:10px 12px;font-size:11px;font-weight:600;color:${vsUrCol(p.unreal)}">${vsEsc(p.unreal)}</td>
+                <td style="padding:10px 12px;font-size:11px;color:var(--muted)">${vsEsc(p.completed)}</td>
+                <td style="padding:10px 12px"><div style="font-size:11px;font-weight:600;color:${tc};white-space:nowrap">${tl}</div>${p.revisions ? `<div style="font-size:9px;color:#c4b5fd;margin-top:2px">${vsEsc(p.revisions)}</div>` : ''}</td>
+              </tr>`;
+}
+function vsIntRows(projects) {
+  const col = { bl: v => /Done/.test(v) ? '#34d399' : /WIP|HOLD/.test(v) ? '#fbbf24' : 'var(--muted)',
+    ur: v => /Done|Exported/.test(v) ? '#34d399' : /SS Shared|Review|Feedback|Final/.test(v) ? '#a78bfa' : /WIP|MAX|Pending/.test(v) ? '#fbbf24' : /Rework|Hold|HOLD/.test(v) ? '#f87171' : 'var(--muted)',
+    tl: v => /On Track/.test(v) ? '#34d399' : /Hold/.test(v) ? '#f87171' : '#fbbf24' };
+  return projects.map((p, pi) => {
+    const done = p.units.filter(u => /Done/.test(u.bl) && /Done/.test(u.ur)).length, n = p.units.length;
+    const hold = p.hold || p.units.every(u => /Hold/.test(u.tl));
+    const lbl = done && done < n ? ` · ${done} done` : done === n ? ' · all done' : '';
+    const head = `        <tr class="int-proj-header" onclick="vsToggleIntProject(this)" style="cursor:pointer">
+          <td colspan="8" style="padding:10px 12px;background:rgba(167,139,250,0.07);border-top:1px solid rgba(167,139,250,0.15);border-bottom:1px solid rgba(255,255,255,0.05)">
+            <span style="font-size:13px;font-weight:700;color:${hold ? '#f87171' : '#a78bfa'}">${vsEsc(p.name)}${hold ? ' <span style="font-size:9px;background:rgba(248,113,113,0.15);color:#f87171;border:1px solid rgba(248,113,113,0.25);padding:1px 6px;border-radius:4px;margin-left:6px">HOLD</span>' : ''}</span>
+            <span style="font-size:10px;color:var(--muted);margin-left:8px">${vsEsc(p.year || '—')} · ${n} unit${n !== 1 ? 's' : ''}${lbl}</span>
+          </td>
+        </tr>`;
+    return head + '\n' + p.units.map(u => `        <tr>
+          <td style="padding:8px 12px;font-size:12px;color:var(--text)">${vsEsc(u.unit)}</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted)">${vsEsc(u.blArt)}</td>
+          <td style="padding:8px 12px;font-size:11px;color:${col.bl(u.bl)};font-weight:600">${vsEsc(u.bl)}</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted)">${vsEsc(u.urArt)}</td>
+          <td style="padding:8px 12px;font-size:11px;color:${col.ur(u.ur)};font-weight:600">${vsEsc(u.ur)}</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted)">${vsEsc(u.jr)}</td>
+          <td style="padding:8px 12px;font-size:12px;color:${col.tl(u.tl)};font-weight:600;white-space:nowrap">${u.tl}</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);max-width:200px">${vsEsc(u.notes)}</td>
+        </tr>`).join('\n');
+  }).join('\n');
+}
+function vsToggleIntProject(h) {
+  let r = h.nextElementSibling; const hide = r && r.style.display !== 'none';
+  while (r && !r.classList.contains('int-proj-header')) { r.style.display = hide ? 'none' : ''; r = r.nextElementSibling; }
+}
+function vsAmenRows(projects, keepArtists) {
+  const PAL = ['#38bdf8', '#a78bfa', '#34d399', '#fbbf24', '#f472b6', '#22d3ee', '#818cf8', '#fb923c'];
+  const ST = { 'Approved': ['Approved by Client', 's-completed', 'tl-on', '● On Track'], 'Revision Delivered': ['Feedback Received · Revision sent', 's-revision', 'tl-on', '● On Track'],
+    'Revision WIP': ['Feedback Received · In Progress', 's-progress', 'tl-risk', '◆ At Risk'], 'Redesign WIP': ['Major Redesign · In Progress', 's-hold', 'tl-delay', '⬤ Delayed'],
+    'Review Pending': ['Review Pending', 's-revision', 'tl-risk', '◆ At Risk'], 'Delivered': ['Delivered · Awaiting Review', 's-progress', 'tl-on', '● On Track'],
+    'WIP': ['In Progress', 's-progress', 'tl-risk', '◆ At Risk'], 'On Hold': ['On Hold', 's-hold', 'tl-delay', '⬤ Delayed'], 'Not Started': ['Not Started', 's-notstarted', 'tl-risk', '○ Not Started'] };
+  const wb = (v, cls) => v === '—' ? '<span style="color:var(--muted2);font-size:11px">—</span>' : `<span class="badge ${v === 'Completed' ? cls : v === 'WIP' ? 'b-amber' : 'b-coral'}" style="font-size:9px">${v === 'WIP' ? 'In Progress' : v}</span>`;
+  const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
+  return projects.map((p, pi) => {
+    const col = PAL[pi % PAL.length], pe = vsEsc(p.name), cnt = {};
+    p.items.forEach(it => cnt[it.status] = (cnt[it.status] || 0) + 1);
+    const arts = [...new Set(p.items.map(it => it.assignee || keepArtists[norm(p.name) + '|' + norm(it.name)] || '').filter(Boolean))];
+    const pills = [['Approved', 'approved', '0,200,150', '#00c896'], ['Review Pending', 'review pending', '251,191,36', '#fbbf24'], ['Revision Delivered', 'revision sent', '167,139,250', '#a78bfa'],
+      ['Revision WIP', 'revision WIP', '251,191,36', '#fbbf24'], ['Redesign WIP', 'redesign', '255,107,107', '#ff6b6b'], ['Delivered', 'awaiting review', '56,189,248', '#38bdf8'], ['WIP', 'in progress', '251,191,36', '#fbbf24'],
+      ['Not Started', 'not started', '255,255,255', 'var(--muted)']].filter(x => cnt[x[0]]).map(([k, l, rgb, fg]) => `<span style="background:rgba(${rgb},.15);color:${fg};font-size:9px;padding:1px 7px;border-radius:10px;font-weight:600">${cnt[k]} ${l}</span>`).join('');
+    const d = p.dates, first = d[0] || '', last = d[d.length - 1] || '';
+    const lastTxt = last ? (+last.slice(5, 7)) + '/' + (+last.slice(8)) + '/' + last.slice(0, 4) : '';
+    const head = `<tr class="amen-proj-header" data-project="${pe}"${first ? ` data-first="${first}" data-last="${last}"` : ''}>
+          <td colspan="9" style="padding:0;border-bottom:none;border-top:14px solid transparent">
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 14px 7px;border-left:4px solid ${col};background:linear-gradient(90deg,${col}14 0%,transparent 80%);border-radius:0 6px 0 0;flex-wrap:wrap">
+              <div style="width:10px;height:10px;border-radius:50%;background:${col};flex-shrink:0"></div>
+              <span style="font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text)">${pe}</span>
+              <span style="font-size:10px;color:var(--muted)">· ${p.items.length} spaces</span>
+              <span style="font-size:10px;color:var(--muted)">· Lead: <span style="color:var(--text)">${vsEsc(arts.slice(0, 3).join(', ') || 'Amenities team')}</span></span>
+              ${lastTxt ? `<span style="font-size:10px;color:var(--muted)">· Last review: <span style="color:var(--text)">${lastTxt}</span></span>` : ''}
+              <div style="display:flex;gap:5px;flex-wrap:wrap">${pills}</div>
+              <button onclick="toggleAmenProject(this.closest('tr').dataset.project, this)" style="margin-left:auto;padding:2px 10px;border:1px solid ${col}44;border-radius:10px;background:transparent;color:${col};font-size:10px;cursor:pointer;font-weight:500;white-space:nowrap">▾ Collapse</button>
+            </div>
+          </td>
+        </tr>`;
+    return head + '\n' + p.items.map(it => {
+      const [label, scls, tcls, ttxt] = ST[it.status];
+      const art = it.assignee || keepArtists[norm(p.name) + '|' + norm(it.name)] || '';
+      return `<tr class="amen-unit-row" data-project="${pe}" style="border-left:3px solid ${col}55">
+          <td style="padding-left:18px;font-size:12px;font-weight:500;color:${col};border-left:3px solid ${col}">${vsEsc(it.name)}${it.section ? `<span style="font-size:9px;color:var(--muted);margin-left:6px">${vsEsc(it.section)}</span>` : ''}</td>
+          <td>${art ? `<span style="font-size:11px;color:var(--text)">${vsEsc(art)}</span>` : '<span style="color:var(--muted2);font-size:11px">—</span>'}</td>
+          <td>${wb(it.max, 'b-blue')}</td>
+          <td>${wb(it.unreal, 'b-teal')}</td>
+          <td><span class="status ${scls}" style="font-size:10px">${label}</span></td>
+          <td style="font-size:10px;color:var(--muted)">${it.rounds ? 'R' + it.rounds : '—'}</td>
+          <td style="font-weight:600;font-size:11px;color:#f59e0b">${it.rounds}</td>
+          <td class="${tcls}" style="font-size:11px">${ttxt}</td>
+        </tr>`;
+    }).join('\n');
+  }).join('\n');
+}
+
+// ── counting (same rules as Overview / Notifications / Risk) ──
+function vsBuildExtMain() {
+  const body = document.getElementById('extTableBody'); if (!body) return;
+  const T = el => el ? String(el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  const rows = [];
+  [['arbazTable', 'Arbaz', { cad: 1, recv: 2, art: 3, bl: 4, ur: 5, pri: 7, tl: 8 }], ['vikasTable', 'Vikas', { cad: 1, recv: 2, art: 4, bl: 5, ur: 6, pri: -1, tl: 8 }]].forEach(([t, lead, ix]) => {
+    document.querySelectorAll('#' + t + ' tbody tr').forEach(tr => {
+      const c = tr.cells; if (!c || c.length < 8) return;
+      const d = c[0].querySelector('div'), name = d ? String((d.childNodes[0] || d).textContent).trim() : T(c[0]);
+      const scope = T(c[0].querySelectorAll('div')[1]);
+      const blRaw = T(c[ix.bl].querySelector('div') || c[ix.bl]), ur = T(c[ix.ur]), tlTxt = T(c[ix.tl].querySelector('div') || c[ix.tl]);
+      const st = /Completed/i.test(blRaw) ? ['Completed', 's-completed'] : /HOLD/i.test(blRaw) ? ['On Hold', 's-hold'] : /Not Started/i.test(blRaw) ? ['Not Started', 's-notstarted'] : ['In Progress', 's-progress'];
+      const urB = /Exported/i.test(ur) ? '<span class="badge b-teal" style="font-size:9px">Exported</span>' : /HOLD/i.test(ur) ? '<span class="badge b-coral" style="font-size:9px">HOLD</span>'
+                : /WIP|Pending|Revision/i.test(ur) ? `<span class="badge b-amber" style="font-size:9px">${esc(/Pending/i.test(ur) ? 'Pending' : 'In Progress')}</span>` : '<span style="color:var(--muted);font-size:11px">—</span>';
+      const pri = ix.pri >= 0 ? T(c[ix.pri]).replace(/[^A-Z]/g, '') : '';
+      const priB = pri ? `<span class="pri p-${pri.toLowerCase()}" style="padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700">${pri}</span>` : '<span style="color:var(--muted);font-size:11px">—</span>';
+      const tlc = /Track/.test(tlTxt) ? 'tl-on' : /Delayed|Hold/.test(tlTxt) ? 'tl-delay' : 'tl-risk';
+      rows.push(`<tr data-client="${esc(typeof csClientOf === 'function' ? csClientOf(name) : name)}">
+      <td style="font-weight:500;font-size:12px;min-width:170px">${esc(name)}<div style="font-size:10px;color:var(--muted);font-weight:400">${lead}'s team</div></td>
+      <td style="font-size:11px;color:var(--muted);max-width:220px;white-space:normal;line-height:1.4">${esc(scope || '—')}</td>
+      <td style="font-size:11px;color:var(--muted)">${esc(T(c[ix.cad]) || '—')}</td>
+      <td style="font-size:11px;color:var(--muted);min-width:120px">${esc(T(c[ix.recv]) || '—')}</td>
+      <td style="font-size:11px">${esc(T(c[ix.art]) || '—')}</td>
+      <td><span class="status ${st[1]}">${st[0]}</span>${blRaw.replace(/\s*\d+%$/, "").trim().toLowerCase() !== st[0].toLowerCase() && !/^hold$/i.test(blRaw.replace(/\s*\d+%$/, "").trim()) ? `<div style="font-size:9px;color:var(--muted);margin-top:2px">${esc(blRaw)}</div>` : ""}</td>
+      <td>${urB}</td>
+      <td>${priB}</td>
+      <td class="${tlc}">${esc(tlTxt)}</td>
+    </tr>`);
+    });
+  });
+  if (!rows.length) return;
+  body.innerHTML = rows.join('');
+  const cf = document.getElementById('extClientFilter');
+  if (cf) { const keep = cf.value; const cl = [...new Set([...body.querySelectorAll('tr')].map(r => r.dataset.client))].sort();
+    cf.innerHTML = '<option value="">All clients</option>' + cl.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); cf.value = keep; }
+  if (typeof filterExt === 'function') filterExt();
+}
+
+function vsCounts() {
+  const T = el => el ? String(el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  const K = () => ({ total: 0, done: 0, review: 0, wip: 0, hold: 0, ns: 0 });
+  const R = { exterior: K(), interior: K(), amenities: K(), arbaz: K(), vikas: K(), extBl: 0, extUr: 0, intBl: 0, intUr: 0, intWait: 0, amWait: 0 };
+  [['arbazTable', 'arbaz', 4, 5], ['vikasTable', 'vikas', 5, 6]].forEach(([t, lead, bi, ui]) => document.querySelectorAll('#' + t + ' tbody tr').forEach(tr => {
+    const c = tr.cells; if (!c || c.length < 8) return; const bl = T(c[bi]), ur = T(c[ui]);
+    const b = /Completed/i.test(bl) && /Exported/i.test(ur) ? 'done' : /HOLD/i.test(bl + ' ' + ur) ? 'hold' : /Not Started/i.test(bl) ? 'ns' : /Completed|Pending/i.test(bl) ? 'review' : 'wip';
+    [R.exterior, R[lead]].forEach(x => { x.total++; x[b]++; });
+    if (/Completed/i.test(bl)) R.extBl++; if (/Exported/i.test(ur)) R.extUr++;
+  }));
+  document.querySelectorAll('#intTable tbody tr:not(.int-proj-header)').forEach(tr => {
+    const c = tr.cells; if (!c || c.length < 7) return; const bl = T(c[2]), ur = T(c[4]), tl = T(c[6]);
+    const b = /Done/.test(bl) && /Done/.test(ur) ? 'done' : /Hold/.test(tl) || /HOLD/.test(bl) ? 'hold' : (bl === '—' && ur === '—') ? 'ns' : /SS Shared|Feedback|Review|Final Pending|Rework/.test(ur) ? 'review' : 'wip';
+    R.interior.total++; R.interior[b]++; if (/Done/.test(bl)) R.intBl++; if (/Done/.test(ur)) R.intUr++;
+  });
+  document.querySelectorAll('#amenTableBody tr.amen-unit-row').forEach(tr => {
+    const c = tr.cells; if (!c || c.length < 5) return; const s = T(c[4]);
+    const b = s.startsWith('Approved') ? 'done' : /Not Started/.test(s) ? 'ns' : /On Hold/.test(s) ? 'hold' : /Review Pending|Revision sent|Awaiting/.test(s) ? 'review' : 'wip';
+    R.amenities.total++; R.amenities[b]++;
+  });
+  R.all = K(); ['exterior', 'interior', 'amenities'].forEach(k => Object.keys(R.all).forEach(f => R.all[f] += R[k][f]));
+  R.extProjects = R.exterior.total; R.intProjects = document.querySelectorAll('#intTable tr.int-proj-header').length;
+  R.amenProjects = document.querySelectorAll('#amenTableBody tr.amen-proj-header').length;
+  window.vsCountsCache = R; return R;
+}
+function vsPct(a, b) { return b ? Math.round(a / b * 100) : 0; }
+function vsMetric(sec, label, v) {
+  const lab = [...document.querySelectorAll(sec + ' .metric-label')].find(e => e.textContent.trim().toLowerCase().startsWith(label.toLowerCase())); if (!lab) return;
+  const card = lab.closest('.metric-card') || lab.parentElement;
+  if (v.val != null) { const e = card.querySelector('.metric-val'); if (e) e.textContent = v.val; }
+  if (v.sub != null) { const e = card.querySelector('.metric-sub'); if (e) e.textContent = v.sub; }
+  if (v.trend != null) { const e = card.querySelector('.metric-trend'); if (e) e.textContent = v.trend; }
+}
+function vsProg(sec, label, text, pct) {
+  const sp = [...document.querySelectorAll(sec + ' .prog-label span')].find(e => e.childElementCount === 0 && e.textContent.trim() === label) ||
+             [...document.querySelectorAll(sec + ' span')].find(e => e.childElementCount === 0 && e.textContent.trim() === label);
+  if (!sp) return;
+  const row = sp.closest('.prog-label') || sp.parentElement, val = row.querySelectorAll('span'); if (val.length) val[val.length - 1].textContent = text;
+  let n = row.nextElementSibling; const fill = n && n.querySelector ? n.querySelector('.prog-fill') : null; if (fill) fill.style.width = pct + '%';
+}
+
+// ── artist workload from the tables (same model as the Workload tab) ──
+function vsRecomputeArtists() {
+  if (typeof artistData === 'undefined') return;
+  const T = el => el ? String(el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  const ALIAS = { 'mirza ali': 'mirza', 'vaibhav m': 'vaibhav', 'abhi': 'abhinav', 'saksham': 'shaksam', 'shaksham': 'shaksam', 'shaizad': 'shahzad' };
+  const CAP = { exterior: 4, interior: 8, amenities: 15 };
+  const byKey = {}; artistData.forEach(a => { const k = a.name.toLowerCase(); (byKey[k] = byKey[k] || []).push(a); });
+  const S = new Map();
+  const credit = (raw, cat, proj, b) => vsSplitNames(raw).forEach(k => {
+    const nm = k.replace(/\b\w/g, m => m.toUpperCase());
+    let a = (byKey[k] || []).find(x => x.category === cat) || (byKey[k] || [])[0];
+    if (!a) { const col = { exterior: '#38bdf8', interior: '#a78bfa', amenities: '#34d399' }[cat];
+      a = { name: nm, initials: nm.slice(0, 2).toUpperCase(), color: col, bg: 'rgba(255,255,255,.08)', category: cat, role: { exterior: 'Exterior artist', interior: 'Interior artist', amenities: 'Amenities artist' }[cat],
+            projects: [], load: 0, avail: 'Available', skill: '', perf: 0, revs: 0, trend: [], total: 0, done: 0, wip: 0, review: 0, hold: 0, _new: true };
+      artistData.push(a); (byKey[k] = byKey[k] || []).push(a); }
+    const s = S.get(a) || { total: 0, done: 0, wip: 0, review: 0, hold: 0, load: 0, act: [], all: [] }; S.set(a, s);
+    s.total++; s[b === 'ns' ? 'total' : b] += b === 'ns' ? 0 : 1;
+    if (b === 'wip') s.load += 100 / CAP[cat]; if (b === 'review') s.load += 50 / CAP[cat];
+    if (b !== 'done' && b !== 'ns') s.act.push(proj); s.all.push(proj);
+  });
+  [['arbazTable', 3, 4, 5], ['vikasTable', 4, 5, 6]].forEach(([t, ai, bi, ui]) => document.querySelectorAll('#' + t + ' tbody tr').forEach(tr => {
+    const c = tr.cells; if (!c || c.length < 8) return; const bl = T(c[bi]), ur = T(c[ui]), d = c[0].querySelector('div');
+    const b = /Completed/i.test(bl) && /Exported/i.test(ur) ? 'done' : /HOLD/i.test(bl + ur) ? 'hold' : /Not Started/i.test(bl) ? 'ns' : /Completed|Pending/i.test(bl) ? 'review' : 'wip';
+    credit(T(c[ai]), 'exterior', d ? String((d.childNodes[0] || d).textContent).trim() : '', b);
+  }));
+  let proj = '';
+  document.querySelectorAll('#intTable tbody tr').forEach(tr => {
+    if (tr.classList.contains('int-proj-header')) { proj = T(tr.querySelector('span')).replace(/\s*HOLD\s*$/, ''); return; }
+    const c = tr.cells; if (!c || c.length < 7) return; const bl = T(c[2]), ur = T(c[4]), tl = T(c[6]);
+    const b = /Done/.test(bl) && /Done/.test(ur) ? 'done' : /Hold/.test(tl) || /HOLD/.test(bl) ? 'hold' : (bl === '—' && ur === '—') ? 'ns' : /SS Shared|Feedback|Review|Final Pending|Rework/.test(ur) ? 'review' : 'wip';
+    const names = [...new Set((T(c[1]) + ',' + T(c[3])).split(/[,·+\/]/).map(s => s.trim()).filter(Boolean))].join(',');
+    credit(names, 'interior', proj, b);
+  });
+  document.querySelectorAll('#amenTableBody tr.amen-unit-row').forEach(tr => {
+    const c = tr.cells; if (!c || c.length < 5) return; const s = T(c[4]);
+    const b = s.startsWith('Approved') ? 'done' : /Not Started/.test(s) ? 'ns' : /On Hold/.test(s) ? 'hold' : /Review Pending|Revision sent|Awaiting/.test(s) ? 'review' : 'wip';
+    credit(T(c[1]), 'amenities', tr.dataset.project, b);
+  });
+  artistData.forEach(a => {
+    const s = S.get(a) || { total: 0, done: 0, wip: 0, review: 0, hold: 0, load: 0, act: [], all: [] };
+    a.total = s.total; a.done = s.done; a.wip = s.wip; a.review = s.review; a.hold = s.hold;
+    a.load = Math.min(100, Math.round(s.load)); a.perf = s.total ? Math.round(s.done / s.total * 100) : 0;
+    a.avail = a.load >= 85 ? 'Overloaded' : a.load >= 50 ? 'Busy' : 'Available';
+    a.projects = [...new Set([...s.act, ...s.all])].slice(0, 8); a.trend = Array(8).fill(a.load);
+  });
+}
+
+// ── risk tracker from live alerts ──
+function vsRebuildRisks() {
+  let al = []; try { al = typeof npDashboardAlerts === 'function' ? npDashboardAlerts() : []; } catch (e) {}
+  const num = t => +((String(t).match(/\((\d+)\s/) || String(t).match(/—\s*(\d+)\s/) || [0, 1])[1]);
+  const crit = al.filter(a => a.type === 'critical'), warn = al.filter(a => a.type === 'warning');
+  const high = warn.filter(a => num(a.title) >= 5 || /inputs|Unreal export|10\+/.test(a.title)), med = warn.filter(a => !high.includes(a));
+  const item = (a, lvl, cls) => `<div class="risk-item"><div class="risk-left"><div class="risk-name">${vsEsc(a.title)}</div>
+      <div class="risk-meta" style="margin-top:3px;color:var(--muted)">${vsEsc(a.sub)}</div><div class="risk-meta" style="margin-top:2px;color:var(--muted2)">Source: ${vsEsc(a.src || '')}</div></div>
+      <div class="risk-right"><span class="badge ${cls}">${lvl}</span></div></div>`;
+  const cards = document.querySelectorAll('#sec-risks .g2 .card');
+  const fill = (card, list, lvl, cls) => { if (!card) return; card.querySelectorAll('.risk-item').forEach(x => x.remove());
+    card.insertAdjacentHTML('beforeend', list.map(a => item(a, lvl, cls)).join('') || '<div style="font-size:12px;color:var(--muted);padding:8px 0">None right now.</div>');
+    const b = card.querySelector('.card-header .badge'); if (b) b.textContent = b.textContent.replace(/^\d+/, list.length); };
+  fill(cards[0], crit, 'Critical', 'b-coral'); fill(cards[1], high, 'High', 'b-amber'); fill(cards[2], med, 'Medium', 'b-blue');
+  vsMetric('#sec-risks', 'Critical risks', { val: crit.length }); vsMetric('#sec-risks', 'High risks', { val: high.length }); vsMetric('#sec-risks', 'Medium risks', { val: med.length });
+}
+
+// ── recompute every view that holds numbers ──
+function vsRecomputeDashboard(opts) {
+  opts = opts || {};
+  const R = vsCounts(), A = R.all, E = R.exterior, I = R.interior, M = R.amenities;
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  // Exterior tab
+  const tab = (id, n, d) => { const t = document.getElementById(id); const s = t && [...t.querySelectorAll('div')].find(x => /projects/.test(x.textContent) && !x.children.length); if (s) s.innerHTML = `${n} projects &middot; ${d} done`; };
+  tab('extTabArbaz', R.arbaz.total, R.arbaz.done); tab('extTabVikas', R.vikas.total, R.vikas.done);
+  const leadStats = (page, vals) => { const p = document.getElementById(page); if (!p) return; p.querySelectorAll('.ext-lead-stat').forEach(s => { const l = s.querySelector('.ext-lead-stat-label')?.textContent.trim(), v = s.querySelector('.ext-lead-stat-val'); if (v && vals[l] != null) v.textContent = vals[l]; }); };
+  leadStats('extPageArbaz', { 'Projects': R.arbaz.total, 'Completed': R.arbaz.done, 'In Progress': R.arbaz.wip + R.arbaz.review });
+  leadStats('extPageVikas', { 'Projects': R.vikas.total, 'Blender Done': document.querySelectorAll('#vikasTable tbody tr').length ? [...document.querySelectorAll('#vikasTable tbody tr')].filter(tr => /Completed/i.test(tr.cells[5]?.textContent || '')).length : 0, 'In Progress': R.vikas.wip + R.vikas.review, 'Unreal Exp.': [...document.querySelectorAll('#vikasTable tbody tr')].filter(tr => /Exported/i.test(tr.cells[6]?.textContent || '')).length });
+
+  // Exterior / Interior KPI rows (by label) + main table
+  try { vsBuildExtMain(); } catch (e) {}
+  const kpi = (sec, map) => document.querySelectorAll(sec + ' .csbd-stat').forEach(s => { const l = s.querySelector('.csbd-stat-label')?.textContent.trim(), v = s.querySelector('.csbd-stat-val'), sb = s.querySelector('.csbd-stat-sub');
+    if (v && map[l]) { v.textContent = map[l][0]; if (sb && map[l][1] != null) sb.textContent = map[l][1]; } });
+  const extArt = (typeof artistData !== 'undefined') ? artistData.filter(a => a.category === 'exterior') : [];
+  kpi('#sec-exterior', { 'Total projects': [E.total, `Arbaz ${R.arbaz.total} · Vikas ${R.vikas.total}`], 'Completed': [E.done, 'Blender done + Unreal exported'], 'In progress': [E.wip + E.review, `${E.wip} active · ${E.review} awaiting client`],
+    'On hold / pending': [E.hold + E.ns, `${E.hold} on hold · ${E.ns} not started`], 'Ext. artists': [extArt.length, `2 leads · ${Math.max(0, extArt.length - 2)} artists`] });
+  kpi('#sec-interior', { 'Total units': [I.total, `Across ${R.intProjects} projects`], 'Completed': [I.done, 'Blender + Unreal done'], 'At risk': [I.review + I.hold, `${I.review} awaiting client · ${I.hold} on hold`],
+    'Projects': [R.intProjects, 'From the Interior sheet'], 'Not started': [I.ns, 'Awaiting CAD / refs'] });
+  const teamLbl = [...document.querySelectorAll('#sec-exterior span')].find(s => /\d+ leads · \d+ artists/.test(s.textContent) && !s.children.length);
+  if (teamLbl) teamLbl.textContent = `2 leads · ${Math.max(0, extArt.length - 2)} artists`;
+  ['exterior', 'interior', 'amenities'].forEach(k => { const card = document.getElementById('mcr_card_' + k); if (!card) return;
+    let fy = null; try { const d = mcrEstimateData(k); fy = d.cumulative[d.cumulative.length - 1]; } catch (e) {}
+    const lab = [...card.querySelectorAll('div')].find(d => d.textContent.trim() === 'FY Rate' && !d.children.length); const v = lab && lab.nextElementSibling; if (v && fy != null) v.textContent = fy + '%'; });
+  // Interior tab
+  set('int_kpi_total', I.total); set('int_kpi_done', I.done); set('int_kpi_risk', I.review); set('int_kpi_projects', R.intProjects); set('int_kpi_ns', I.ns);
+  set('intCount', `Showing ${I.total} units across ${R.intProjects} projects`);
+  // Amenities tab
+  const amKpi = { 'Total clients': R.amenProjects, 'Total spaces': M.total, 'Approved': M.done, 'In review': M.review, 'WIP / Redesign': M.wip + M.hold };
+  document.querySelectorAll('#sec-amenities .csbd-stat').forEach(s => { const l = s.querySelector('.csbd-stat-label')?.textContent.trim(), v = s.querySelector('.csbd-stat-val'); if (v && amKpi[l] != null) v.textContent = amKpi[l]; });
+  set('amenCount', `Showing ${M.total} spaces across ${R.amenProjects} projects`);
+  const cf = document.getElementById('amenClientFilter');
+  if (cf) { const keep = cf.value; cf.innerHTML = '<option value="">All clients</option>' + [...document.querySelectorAll('#amenTableBody tr.amen-proj-header')].map(h => `<option value="${vsEsc(h.dataset.project)}">${vsEsc(h.dataset.project)}</option>`).join(''); cf.value = keep; }
+  // Monthly completion cards
+  [['exterior', E], ['interior', I], ['amenities', M]].forEach(([k, x]) => { set('mcr_total_' + k, x.total); set('mcr_done_' + k, x.done); set('mcr_wip_' + k, x.wip + x.review); set('mcr_hold_' + k, x.hold);
+    set('mcr_rate_' + k, vsPct(x.done, x.total) + '%'); const b = document.getElementById('mcr_bar_' + k); if (b) b.style.width = vsPct(x.done, x.total) + '%'; });
+  // Overview
+  const O = '#sec-overview';
+  vsMetric(O, 'Total pipeline', { val: A.total, sub: `${E.total} Ext · ${I.total} Int · ${M.total} Amen`, trend: `${R.extProjects + R.intProjects + R.amenProjects} projects across 3 tabs` });
+  vsMetric(O, 'Completed / Approved', { val: A.done, sub: `${vsPct(A.done, A.total)}% of total pipeline done`, trend: `${E.done} Ext · ${I.done} Int · ${M.done} Amen` });
+  vsMetric(O, 'On hold / Blocked', { val: A.hold, sub: `${E.hold} Ext · ${I.hold} Int · ${M.hold} Amen` });
+  vsMetric(O, 'In review / Pending', { val: A.review, sub: `${E.review} Ext · ${I.review} Int · ${M.review} Amen — awaiting client` });
+  vsMetric(O, 'In progress / WIP', { val: A.wip, sub: `${E.wip} Ext · ${I.wip} Int · ${M.wip} Amen active` });
+  vsProg(O, 'Exterior', `${E.total} projects · ${vsPct(E.total, A.total)}%`, vsPct(E.total, A.total));
+  vsProg(O, 'Interior', `${I.total} units · ${vsPct(I.total, A.total)}%`, vsPct(I.total, A.total));
+  vsProg(O, 'Amenities', `${M.total} spaces · ${vsPct(M.total, A.total)}%`, vsPct(M.total, A.total));
+  const dist = [...document.querySelectorAll(O + ' .card-meta')].find(e => /total items/.test(e.textContent)); if (dist) dist.textContent = `${A.total} total items`;
+  [['Completed / Approved', A.done], ['In Progress / WIP', A.wip], ['In Review / SS Shared', A.review], ['On Hold / Blocked', A.hold], ['Not Started', A.ns]].forEach(([l, v]) => {
+    const sp = [...document.querySelectorAll(O + ' span')].find(e => e.childElementCount === 1 && e.textContent.trim() === l); const b = sp && sp.parentElement.querySelector('.badge'); if (b) b.textContent = v; });
+  vsProg(O, 'Blender complete', `${R.extBl} / ${E.total} · ${vsPct(R.extBl, E.total)}%`, vsPct(R.extBl, E.total));
+  vsProg(O, 'Unreal exported', `${R.extUr} / ${E.total} · ${vsPct(R.extUr, E.total)}%`, vsPct(R.extUr, E.total));
+  vsProg(O, 'Blender done', `${R.intBl} / ${I.total} · ${vsPct(R.intBl, I.total)}%`, vsPct(R.intBl, I.total));
+  vsProg(O, 'Unreal complete', `${R.intUr} / ${I.total} · ${vsPct(R.intUr, I.total)}%`, vsPct(R.intUr, I.total));
+  vsProg(O, 'SS Shared / feedback pending', `${I.review} / ${I.total} · ${vsPct(I.review, I.total)}%`, vsPct(I.review, I.total));
+  vsProg(O, 'Client approved', `${M.done} / ${M.total} · ${vsPct(M.done, M.total)}%`, vsPct(M.done, M.total));
+  vsProg(O, 'Feedback / review', `${M.review} / ${M.total} · ${vsPct(M.review, M.total)}%`, vsPct(M.review, M.total));
+  // Overview urgent list from live alerts
+  try { const al = typeof npDashboardAlerts === 'function' ? npDashboardAlerts() : [];
+    const pick = [...al.filter(a => a.type === 'critical').slice(0, 5), ...al.filter(a => a.type === 'warning' && a.id !== 'workload-heavy').slice(0, 5)];
+    const lab = [...document.querySelectorAll(O + ' .card-title')].find(e => /Urgent/.test(e.textContent)), card = lab && lab.closest('.card');
+    if (card && pick.length) { card.querySelectorAll('.ms-item').forEach(x => x.remove());
+      const holder = card.querySelector('.card-header').parentElement;
+      const box = card.querySelector('[data-vs-urgent]') || (() => { const d = document.createElement('div'); d.setAttribute('data-vs-urgent', '1'); card.appendChild(d); return d; })();
+      box.innerHTML = pick.map(a => `<div class="ms-item"><div class="ms-dot" style="background:${a.type === 'critical' ? '#ff6b6b' : '#f59e0b'}"></div><span class="ms-name">${vsEsc(a.title.replace(/^(On hold|Awaiting client|Client review pending|Revision in progress|Major redesign) — /, ''))}</span><span class="ms-artist">${vsEsc(a.src || '')}</span><span class="ms-date" style="color:${a.type === 'critical' ? '#ff6b6b' : '#f59e0b'}">${vsEsc((a.title.match(/^(On hold|Awaiting client|Client review pending|Revision in progress|Major redesign|Unreal export pending|Client inputs pending)/) || ['Action'])[0])}</span></div>`).join('');
+      const meta = card.querySelector('.card-meta'); if (meta) meta.textContent = pick.length + ' items'; }
+  } catch (e) {}
+  // Analytics
+  const N = '#sec-analytics';
+  vsMetric(N, 'Total pipeline', { val: A.total, sub: `${E.total} Ext · ${I.total} Int · ${M.total} Amen` });
+  vsMetric(N, 'Completion rate', { val: vsPct(A.done, A.total) + '%', sub: `${A.done} of ${A.total} fully done`, trend: `Amen ${vsPct(M.done, M.total)}% · Int ${vsPct(I.done, I.total)}% · Ext ${vsPct(E.done, E.total)}%` });
+  vsMetric(N, 'Blocked / awaiting client', { val: A.hold + A.review, sub: `${A.hold} on hold · ${A.review} in client review` });
+  [['Completed / Approved', A.done], ['In review · awaiting client', A.review], ['In progress / WIP', A.wip], ['Not started', A.ns], ['On hold / Blocked', A.hold]].forEach(([l, v]) => vsProg(N, l, `${v} · ${vsPct(v, A.total)}%`, vsPct(v, A.total)));
+  // Workload / roster
+  vsRecomputeArtists();
+  if (opts.risks !== false) { try { vsRebuildRisks(); } catch (e) {} }
+  const act = artistData.filter(a => (a.total || 0) > 0);
+  vsMetric(O, 'Avg artist workload', { val: (act.length ? Math.round(act.reduce((s, a) => s + a.load, 0) / act.length) : 0) + '%', sub: `${act.filter(a => a.load >= 85).length} at capacity (≥85%) · ${act.filter(a => a.load >= 60 && a.load < 85).length} high (60–84%)` });
+  // Refresh live views
+  [['renderNotifications'], ['renderHeatmap'], ['renderCS'], ['renderCSWidgets'], ['renderAIPanel'], ['vsUpdateSidebarBadges'], ['vsUpdateSyncCenterStats'], ['apFillSelect'], ['renderAnalyticsStatus'], ['renderHoursChart'], ['mcrRenderAll']]
+    .forEach(([f]) => { try { if (typeof window[f] === 'function') window[f](); } catch (e) { console.warn(f, e); } });
+  try { if (typeof renderGantt === 'function') renderGantt(typeof ganttCurrentFilter !== 'undefined' ? ganttCurrentFilter : 'all'); } catch (e) {}
+  try { if (typeof filterLog === 'function') filterLog(); } catch (e) {}
+  return R;
+}
+
+// ── apply parsed data to the tables ──
+function vsApplyData(data) {
+  const applied = [];
+  if (data.arbaz && data.arbaz.length) { const tb = document.querySelector('#arbazTable tbody'); if (tb) { tb.innerHTML = data.arbaz.map(vsArbazRow).join('\n'); applied.push('arbaz'); } }
+  if (data.vikas && data.vikas.length) { const tb = document.querySelector('#vikasTable tbody'); if (tb) { tb.innerHTML = data.vikas.map(vsVikasRow).join('\n'); applied.push('vikas'); } }
+  if (data.interior && data.interior.length) { const tb = document.querySelector('#intTable tbody'); if (tb) { tb.innerHTML = vsIntRows(data.interior); applied.push('interior'); } }
+  if (data.amenities && data.amenities.length) {
+    const tb = document.getElementById('amenTableBody');
+    if (tb) { const keep = {}, norm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
+      tb.querySelectorAll('tr.amen-unit-row').forEach(r => { const a = r.cells[1]?.textContent.trim(); const d = r.cells[0]?.childNodes[0]; if (a && a !== '—') keep[norm(r.dataset.project) + '|' + norm(d ? d.textContent : '')] = a; });
+      tb.innerHTML = vsAmenRows(data.amenities, keep); applied.push('amenities'); } }
+  return applied;
+}
+const VS_MIN = { arbaz: 3, vikas: 1, interior: 3, amenities: 3 };
+function vsParse(key, grid) {
+  const f = { arbaz: vsParseArbaz, vikas: vsParseVikas, interior: vsParseInterior, amenities: vsParseAmenities }[key];
+  const out = f(grid);
+  if (!out || out.length < VS_MIN[key]) throw new Error(`Layout not recognised — found ${out ? out.length : 0} project(s). Is this the right sheet/tab?`);
+  return out;
+}
+
+// ── orchestration ──
+async function vsSyncAll(opts) {
+  opts = opts || {};
+  if (vsSyncing) return { ok: false, busy: true };
+  const src = vsGetSources(), keys = VS_SOURCES.map(s => s.key).filter(k => src[k] && (!opts.only || opts.only.includes(k)));
+  if (!keys.length) { vsUi('status', 'error', 'No sheets linked yet — paste your Google Sheet links below and click Save.'); return { ok: false }; }
+  vsSyncing = true; vsUi('busy', true); vsUi('status', 'info', `Syncing ${keys.length} sheet${keys.length > 1 ? 's' : ''}…`);
+  keys.forEach(k => vsUi('card', k, 'sync', 'Syncing…'));
+  const results = await Promise.allSettled(keys.map(async k => { const grid = await vsFetchGrid(src[k]); return { k, data: vsParse(k, grid) }; }));
+  const data = {}, ok = [], bad = [];
+  results.forEach((r, i) => { const k = keys[i];
+    if (r.status === 'fulfilled') { data[k] = r.value.data; ok.push(k);
+      const n = k === 'interior' ? r.value.data.reduce((s, p) => s + p.units.length, 0) : k === 'amenities' ? r.value.data.reduce((s, p) => s + p.items.length, 0) : r.value.data.length;
+      const info = { at: new Date().toISOString(), projects: r.value.data.length, items: n, state: 'ok' }; vsSetMeta(k, info);
+      vsUi('card', k, 'ok', `✓ ${r.value.data.length} projects` + (k === 'interior' ? ` · ${n} units` : k === 'amenities' ? ` · ${n} spaces` : ''));
+      if (typeof syncLog === 'function') syncLog('success', `${VS_SOURCES.find(s => s.key === k).label}: ${r.value.data.length} projects synced`);
+    } else { bad.push(k); const msg = (r.reason && r.reason.message) || 'failed'; vsUi('card', k, 'err', '✗ ' + msg); vsSetMeta(k, Object.assign({}, vsMeta()[k] || {}, { state: 'err', error: msg, errAt: new Date().toISOString() }));
+      if (typeof syncLog === 'function') syncLog('error', `${VS_SOURCES.find(s => s.key === k).label}: ${msg.slice(0, 120)}`); }
+  });
+  if (ok.length) {
+    vsApplyData(data);
+    try { const c = JSON.parse(localStorage.getItem(VS_CACHE_KEY) || '{}') || {}; c.data = Object.assign(c.data || {}, data); c.at = new Date().toISOString(); localStorage.setItem(VS_CACHE_KEY, JSON.stringify(c)); } catch (e) {}
+    const R = vsRecomputeDashboard();
+    vsUi('status', bad.length ? 'warn' : 'ok', `${bad.length ? '⚠' : '✓'} ${ok.length} of ${keys.length} sheets synced — dashboard updated: ${R.all.total} items (${R.exterior.total} Ext · ${R.interior.total} Int · ${R.amenities.total} Amen), ${R.all.done} complete.` + (bad.length ? ' Fix the failed sheet(s) below and sync again.' : ''));
+  } else vsUi('status', 'error', '✗ No sheet could be read. Check the sharing settings shown on each card below.');
+  vsSyncing = false; vsUi('busy', false); vsRenderSyncTab(true);
+  return { ok: ok.length > 0, ok_keys: ok, failed: bad };
+}
+function vsApplyCached() {
+  try { const c = JSON.parse(localStorage.getItem(VS_CACHE_KEY) || 'null'); if (!c || !c.data) return false;
+    const done = vsApplyData(c.data); if (done.length) { vsRecomputeDashboard(); return true; } } catch (e) { console.warn('sync cache', e); }
+  return false;
+}
+function vsClearCache() {
+  if (!confirm('Forget the last synced data and go back to the data built into this dashboard file? (Your sheet links are kept.)')) return;
+  try { localStorage.removeItem(VS_CACHE_KEY); localStorage.removeItem(VS_META_KEY); } catch (e) {}
+  location.reload();
+}
+
+// ── Sync tab UI ──
+function vsUi(kind, a, b, c) {
+  if (kind === 'busy') { const btn = document.getElementById('vsSyncBtn'); if (btn) { btn.disabled = a; btn.innerHTML = a ? '<span class="gs-spin" style="display:inline-block">⟳</span> Syncing…' : '⟳ Sync All Sheets Now'; } return; }
+  if (kind === 'status') { const el = document.getElementById('vsStatus'); if (!el) return;
+    const C = { info: ['rgba(56,189,248,.10)', 'rgba(56,189,248,.3)', '#7dd3fc'], ok: ['rgba(0,200,150,.10)', 'rgba(0,200,150,.3)', '#6ee7b7'], warn: ['rgba(245,158,11,.10)', 'rgba(245,158,11,.3)', '#fde68a'], error: ['rgba(255,107,107,.10)', 'rgba(255,107,107,.3)', '#fca5a5'] }[a];
+    el.style.display = 'block'; el.style.background = C[0]; el.style.borderColor = C[1]; el.style.color = C[2]; el.textContent = b; return; }
+  if (kind === 'card') { const el = document.getElementById('vsCardState_' + a); if (!el) return;
+    el.textContent = c; el.style.color = { sync: '#fbbf24', ok: '#6ee7b7', err: '#fca5a5' }[b] || 'var(--muted)'; }
+}
+function vsSaveSource(k) {
+  const inp = document.getElementById('vsUrl_' + k); const v = (inp && inp.value || '').trim(); const s = vsGetSources();
+  if (v && !/docs\.google\.com\/spreadsheets\/d\//.test(v)) { vsUi('card', k, 'err', '✗ Paste a Google Sheets link (docs.google.com/spreadsheets/…)'); return; }
+  if (v) s[k] = v; else delete s[k]; vsSaveSources(s);
+  vsUi('card', k, 'ok', v ? '✓ Link saved — click Sync' : 'Link removed'); vsRenderSyncTab(true);
+}
+function vsRenderSyncTab(keepInputs) {
+  const box = document.getElementById('vsCards'); if (!box) return;
+  const src = vsGetSources(), meta = vsMeta(), c = (() => { try { return JSON.parse(localStorage.getItem(VS_CACHE_KEY) || 'null'); } catch (e) { return null; } })();
+  const ago = iso => { if (!iso) return 'never'; const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 1 ? 'just now' : m < 60 ? m + ' min ago' : m < 1440 ? Math.round(m / 60) + ' h ago' : new Date(iso).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' }); };
+  const linked = VS_SOURCES.filter(s => src[s.key]).length;
+  const hdr = document.getElementById('vsSummary');
+  if (hdr) hdr.textContent = `${linked} of 4 sheets linked · last full sync: ${c && c.at ? ago(c.at) : 'never'}${c && c.at ? '' : ' (showing the data built into this file)'}`;
+  if (keepInputs && box.children.length) { VS_SOURCES.forEach(s => { const m = document.getElementById('vsMeta_' + s.key); if (m) m.textContent = meta[s.key] ? `Last synced ${ago(meta[s.key].at)} · ${meta[s.key].projects} projects${s.key === 'interior' || s.key === 'amenities' ? ' · ' + meta[s.key].items + (s.key === 'interior' ? ' units' : ' spaces') : ''}` : 'Not synced yet'; }); return; }
+  box.innerHTML = VS_SOURCES.map(s => `
+    <div class="card" style="border-top:3px solid ${s.color};padding:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="width:9px;height:9px;border-radius:50%;background:${s.color}"></span>
+        <span style="font-weight:700;font-size:13px;color:var(--text)">${s.label}</span>
+        <span style="margin-left:auto;font-size:10px;padding:2px 8px;border-radius:10px;${src[s.key] ? 'background:rgba(0,200,150,.12);color:#6ee7b7' : 'background:rgba(255,255,255,.06);color:var(--muted)'}">${src[s.key] ? '● Linked' : '○ Not linked'}</span>
+      </div>
+      <div style="display:flex;gap:6px">
+        <input id="vsUrl_${s.key}" type="text" value="${vsEsc(src[s.key] || '')}" placeholder="Paste Google Sheet link (include the right tab — #gid=…)" style="flex:1;min-width:0;padding:8px 10px;font-size:11px">
+        <button class="topbtn" style="font-size:11px;padding:6px 12px" onclick="vsSaveSource('${s.key}')">Save</button>
+        <button class="topbtn" style="font-size:11px;padding:6px 12px" ${src[s.key] ? '' : 'disabled style="opacity:.5;font-size:11px;padding:6px 12px"'} onclick="vsSyncAll({only:['${s.key}']})">Sync</button>
+        ${src[s.key] ? `<a class="topbtn" style="font-size:11px;padding:6px 10px;text-decoration:none" href="${vsEsc(src[s.key])}" target="_blank" rel="noopener" title="Open sheet">↗</a>` : ''}
+      </div>
+      <div id="vsCardState_${s.key}" style="font-size:11px;margin-top:8px;color:${meta[s.key] && meta[s.key].state === 'err' ? '#fca5a5' : meta[s.key] && meta[s.key].state === 'ok' ? '#6ee7b7' : 'var(--muted)'}">${!src[s.key] ? 'Paste the link to this sheet, then Save' : meta[s.key] && meta[s.key].state === 'err' ? '✗ ' + vsEsc(meta[s.key].error) : meta[s.key] && meta[s.key].state === 'ok' ? '✓ Synced' : 'Ready — click Sync'}</div>
+      <div id="vsMeta_${s.key}" style="font-size:10px;margin-top:3px;color:var(--muted)">${meta[s.key] ? `Last synced ${ago(meta[s.key].at)} · ${meta[s.key].projects} projects${s.key === 'interior' || s.key === 'amenities' ? ' · ' + meta[s.key].items + (s.key === 'interior' ? ' units' : ' spaces') : ''}` : 'Not synced yet'}</div>
+    </div>`).join('');
+}
+
+// ── route every old sync entry point to the structured engine (no destructive table replacement) ──
+var VS_TAB_KEYS = { exterior: ['arbaz', 'vikas'], interior: ['interior'], amenities: ['amenities'] };
+async function syncAll() { return vsSyncAll(); }
+async function syncFromSheet(cat) { const r = await vsSyncAll({ only: VS_TAB_KEYS[cat] || [cat] }); if (typeof showAmToast === 'function') showAmToast(r && r.ok ? '✓ ' + cat + ' synced from Google Sheets' : 'Sync failed — see Sync All Data tab', r && r.ok ? '#00c896' : '#f59e0b'); return r; }
+async function syncCategoryAuto(cat) { const r = await vsSyncAll({ only: VS_TAB_KEYS[cat] || [cat] }); return { success: !!(r && r.ok), updated: 0, matched: 0, total: 0, error: r && r.ok ? '' : 'Sync failed' }; }
+document.addEventListener('DOMContentLoaded', () => { try { if (!vsApplyCached()) vsRecomputeDashboard({ risks: false }); } catch (e) { console.warn('recompute', e); } });
 
 </script>
 

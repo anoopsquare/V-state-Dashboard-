@@ -14350,59 +14350,59 @@ function toggleIntProject(projName, btn) {
 }
 
 function collapseAllInt() {
-  document.querySelectorAll('.int-proj-header').forEach(h => {
-    const proj = h.dataset.project;
-    const rows = document.querySelectorAll(`.int-unit-row[data-project="${proj}"]`);
-    rows.forEach(r => r.classList.add('collapsed'));
-    const btn = h.querySelector('button');
-    if (btn) btn.textContent = '▸ Expand';
+  // Works for both the built-in table and the table rebuilt by Google Sheet sync
+  document.querySelectorAll('#intTable tr.int-proj-header').forEach(h => {
+    let r = h.nextElementSibling;
+    while (r && !r.classList.contains('int-proj-header')) { r.style.display = 'none'; r.classList.add('collapsed'); r = r.nextElementSibling; }
+    const btn = h.querySelector('button'); if (btn) btn.textContent = '▸ Expand';
   });
 }
 
 function expandAllInt() {
-  document.querySelectorAll('.int-unit-row').forEach(r => r.classList.remove('collapsed'));
-  document.querySelectorAll('.int-proj-header button').forEach(btn => { btn.textContent = '▾ Collapse'; });
+  document.querySelectorAll('#intTable tr.int-proj-header').forEach(h => {
+    let r = h.nextElementSibling;
+    while (r && !r.classList.contains('int-proj-header')) { r.style.display = ''; r.classList.remove('collapsed'); r = r.nextElementSibling; }
+    const btn = h.querySelector('button'); if (btn) btn.textContent = '▾ Collapse';
+  });
 }
 
 // Override filterInt to handle grouped structure
 function filterInt() {
-  const q   = (document.getElementById('intSearch')?.value || '').toLowerCase();
+  // Works for both the built-in table and the table rebuilt by Google Sheet sync
+  const norm = s => String(s || '').toLowerCase().replace(/[\u2013\u2014-]/g, '-').replace(/\s+/g, ' ').trim();
+  const q   = norm(document.getElementById('intSearch')?.value);
   const yr  = document.getElementById('intYearFilter')?.value || '';
   const ust = document.getElementById('intUnrealFilter')?.value || '';
-  const cli = document.getElementById('intClientFilter')?.value || '';
-  let visible = 0;
-
-  // For each project group header
-  document.querySelectorAll('.int-proj-header').forEach(header => {
-    const projName = header.dataset.project;
-    const unitRows = document.querySelectorAll(`.int-unit-row[data-project="${projName}"]`);
-    const headerText = header.textContent.toLowerCase();
-
+  const cli = norm(document.getElementById('intClientFilter')?.value);
+  let visible = 0, projects = 0;
+  document.querySelectorAll('#intTable tr.int-proj-header').forEach(header => {
+    const nameEl = header.querySelector('span');
+    const projName = norm(header.dataset.project || (nameEl ? nameEl.textContent.replace(/\s*HOLD\s*$/, '') : header.textContent));
+    const headerText = header.textContent;
     let anyUnitVisible = false;
-
-    unitRows.forEach(row => {
-      const cells = row.cells;
-      const unitText  = cells[0]?.innerText || '';
-      const blArtText = cells[1]?.innerText || '';
-      const blSt      = cells[2]?.innerText || '';
-      const urArtText = cells[3]?.innerText || '';
-      const urSt      = cells[4]?.innerText || '';
-
-      const matchQ   = !q   || projName.toLowerCase().includes(q) || unitText.toLowerCase().includes(q) || blArtText.toLowerCase().includes(q) || urArtText.toLowerCase().includes(q);
-      const matchYr  = !yr  || header.innerHTML.includes(yr);
-      const matchUst = !ust || urSt.includes(ust);
-      const matchCli = !cli || projName.includes(cli);
+    let row = header.nextElementSibling;
+    while (row && !row.classList.contains('int-proj-header')) {
+      const cells = row.cells || [];
+      const unitText  = norm(cells[0]?.innerText);
+      const blArtText = norm(cells[1]?.innerText);
+      const urArtText = norm(cells[3]?.innerText);
+      const jrText    = norm(cells[5]?.innerText);
+      const urSt      = ((cells[4]?.innerText || '') + ' ' + (cells[6]?.innerText || '')).replace(/\s+/g, ' ').trim();
+      const matchQ   = !q   || projName.includes(q) || unitText.includes(q) || blArtText.includes(q) || urArtText.includes(q) || jrText.includes(q);
+      const matchYr  = !yr  || headerText.includes(yr);
+      const matchUst = !ust || urSt.replace(/\s/g, '').includes(ust.replace(/\s/g, ''));
+      const matchCli = !cli || projName.includes(cli) || cli.includes(projName);
       const show = matchQ && matchYr && matchUst && matchCli;
       row.style.display = show ? '' : 'none';
+      row.classList.remove('collapsed');
       if (show) { anyUnitVisible = true; visible++; }
-    });
-
-    // Show/hide the project header based on whether any unit is visible
+      row = row.nextElementSibling;
+    }
     header.style.display = anyUnitVisible ? '' : 'none';
+    if (anyUnitVisible) projects++;
   });
-
   const c = document.getElementById('intCount');
-  if (c) c.textContent = `Showing ${visible} units`;
+  if (c) c.textContent = `Showing ${visible} units across ${projects} projects`;
 }
 // ═══ END INTERIOR TABLE GROUP LOGIC ═════════════════════════════
 
@@ -15143,22 +15143,20 @@ function filterExt() {
 
 // ── Collapse / Expand all rows in Exterior table ──
 function collapseAllExt() {
+  // Show only the project names; hide the detail columns and their headings
   document.querySelectorAll('#extTableBody tr').forEach(row => {
-    // Keep first cell visible, hide all detail cells beyond column 0
-    row.querySelectorAll('td').forEach((td, i) => {
-      if (i > 0) td.style.display = 'none';
-    });
+    row.querySelectorAll('td').forEach((td, i) => { if (i > 0) td.style.display = 'none'; });
     row.dataset.collapsed = '1';
   });
+  document.querySelectorAll('#extTable thead th').forEach((th, i) => { if (i > 0) th.style.display = 'none'; });
 }
 
 function expandAllExt() {
   document.querySelectorAll('#extTableBody tr').forEach(row => {
-    row.querySelectorAll('td').forEach(td => {
-      td.style.display = '';
-    });
+    row.querySelectorAll('td').forEach(td => { td.style.display = ''; });
     row.dataset.collapsed = '';
   });
+  document.querySelectorAll('#extTable thead th').forEach(th => { th.style.display = ''; });
 }
 
 // Init on load
@@ -17219,7 +17217,16 @@ var GSHEET_KEY = 'vstudio_gsheet_links';
 })();
 
 function getGsheetLinks() {
-  try { return JSON.parse(localStorage.getItem(GSHEET_KEY) || '{}'); } catch(e) { return {}; }
+  let links = {};
+  try { links = JSON.parse(localStorage.getItem(GSHEET_KEY) || '{}') || {}; } catch(e) { links = {}; }
+  // Fall back to the links saved in Sync Center so every tab shows the same linked sheet
+  try {
+    const src = JSON.parse(localStorage.getItem('vstudio_sync_sources') || '{}') || {};
+    if (!links.exterior && (src.arbaz || src.vikas)) links.exterior = src.arbaz || src.vikas;
+    if (!links.interior && src.interior) links.interior = src.interior;
+    if (!links.amenities && src.amenities) links.amenities = src.amenities;
+  } catch(e) {}
+  return links;
 }
 
 function saveGsheetLinks(links) {
@@ -21879,7 +21886,8 @@ function vsMetric(sec, label, v) {
   if (v.trend != null) { const e = card.querySelector('.metric-trend'); if (e) e.textContent = v.trend; }
 }
 function vsProg(sec, label, text, pct) {
-  const sp = [...document.querySelectorAll(sec + ' .prog-label span')].find(e => e.childElementCount === 0 && e.textContent.trim() === label) ||
+  const sp = [...document.querySelectorAll(sec + ' .prog-label > span:first-child')].find(e => e.textContent.trim() === label) ||
+             [...document.querySelectorAll(sec + ' .prog-label span')].find(e => e.childElementCount === 0 && e.textContent.trim() === label) ||
              [...document.querySelectorAll(sec + ' span')].find(e => e.childElementCount === 0 && e.textContent.trim() === label);
   if (!sp) return;
   const row = sp.closest('.prog-label') || sp.parentElement, val = row.querySelectorAll('span'); if (val.length) val[val.length - 1].textContent = text;
@@ -22020,7 +22028,7 @@ function vsRecomputeDashboard(opts) {
   } catch (e) {}
   // Analytics
   const N = '#sec-analytics';
-  vsMetric(N, 'Total pipeline', { val: A.total, sub: `${E.total} Ext · ${I.total} Int · ${M.total} Amen` });
+  vsMetric(N, 'Total pipeline', { val: A.total, sub: `${E.total} Ext · ${I.total} Int · ${M.total} Amen`, trend: `${R.extProjects + R.intProjects + R.amenProjects} projects across 3 tabs` });
   vsMetric(N, 'Completion rate', { val: vsPct(A.done, A.total) + '%', sub: `${A.done} of ${A.total} fully done`, trend: `Amen ${vsPct(M.done, M.total)}% · Int ${vsPct(I.done, I.total)}% · Ext ${vsPct(E.done, E.total)}%` });
   vsMetric(N, 'Blocked / awaiting client', { val: A.hold + A.review, sub: `${A.hold} on hold · ${A.review} in client review` });
   [['Completed / Approved', A.done], ['In review · awaiting client', A.review], ['In progress / WIP', A.wip], ['Not started', A.ns], ['On hold / Blocked', A.hold]].forEach(([l, v]) => vsProg(N, l, `${v} · ${vsPct(v, A.total)}%`, vsPct(v, A.total)));
@@ -22144,6 +22152,99 @@ async function syncAll() { return vsSyncAll(); }
 async function syncFromSheet(cat) { const r = await vsSyncAll({ only: VS_TAB_KEYS[cat] || [cat] }); if (typeof showAmToast === 'function') showAmToast(r && r.ok ? '✓ ' + cat + ' synced from Google Sheets' : 'Sync failed — see Sync All Data tab', r && r.ok ? '#00c896' : '#f59e0b'); return r; }
 async function syncCategoryAuto(cat) { const r = await vsSyncAll({ only: VS_TAB_KEYS[cat] || [cat] }); return { success: !!(r && r.ok), updated: 0, matched: 0, total: 0, error: r && r.ok ? '' : 'Sync failed' }; }
 document.addEventListener('DOMContentLoaded', () => { try { if (!vsApplyCached()) vsRecomputeDashboard({ risks: false }); } catch (e) { console.warn('recompute', e); } });
+
+
+// ── Interior tab: colour each project like the Amenities tab ──
+var VS_INT_COLORS = ['#38bdf8', '#a78bfa', '#34d399', '#fbbf24', '#f472b6', '#22d3ee', '#818cf8', '#fb923c'];
+function vsStyleIntProjects() {
+  const tb = document.querySelector('#intTable tbody'); if (!tb) return;
+  let idx = -1, color = VS_INT_COLORS[0];
+  [...tb.rows].forEach(tr => {
+    if (tr.classList.contains('int-proj-header')) {
+      idx++; color = VS_INT_COLORS[idx % VS_INT_COLORS.length];
+      tr.style.cursor = 'pointer';
+      if (tr.dataset.vsColor !== color) {
+        const td = tr.cells[0]; if (!td) return;
+        const spans = td.querySelectorAll(':scope > span, :scope > div > span');
+        const nameEl = spans[0], metaEl = spans[1];
+        const nameHTML = nameEl ? nameEl.innerHTML : td.textContent.trim();
+        const metaTxt = metaEl ? metaEl.textContent.trim() : '';
+        if (!tr.dataset.project) tr.dataset.project = (nameEl ? nameEl.textContent : '').replace(/\s*HOLD\s*$/, '').trim();
+        const metaParts = metaTxt ? metaTxt.split('·').map(s => s.trim()).filter(Boolean) : [];
+        const meta = metaParts.map(p => {
+          const done = /all done/i.test(p), hold = /hold/i.test(p);
+          return done ? '<span style="font-size:10px;padding:1px 8px;border-radius:10px;background:rgba(52,211,153,.12);color:#34d399;font-weight:600">All done</span>'
+               : hold ? '<span style="font-size:10px;padding:1px 8px;border-radius:10px;background:rgba(248,113,113,.12);color:#f87171;font-weight:600">' + p + '</span>'
+               : '<span style="font-size:10px;color:var(--muted)">· ' + p + '</span>';
+        }).join('');
+        td.setAttribute('colspan', td.getAttribute('colspan') || '8');
+        td.style.cssText = 'padding:0;border-bottom:none;border-top:14px solid transparent;background:none';
+        td.innerHTML = '<div style="display:flex;align-items:center;gap:10px;padding:9px 14px 7px;border-left:4px solid ' + color + ';background:linear-gradient(90deg,' + color + '14 0%,transparent 80%);border-radius:0 6px 0 0;flex-wrap:wrap">'
+          + '<div style="width:10px;height:10px;border-radius:50%;background:' + color + ';flex-shrink:0"></div>'
+          + '<span style="font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text)">' + nameHTML + '</span>'
+          + meta + '</div>';
+        tr.dataset.vsColor = color;
+      }
+    } else if (idx >= 0) {
+      tr.style.borderLeft = '3px solid ' + color + '55';
+      const c0 = tr.cells[0];
+      if (c0) { c0.style.paddingLeft = '18px'; c0.style.color = color; c0.style.fontWeight = '500'; c0.style.borderLeft = '3px solid ' + color; }
+    }
+  });
+}
+(function vsWatchIntTable() {
+  const start = () => {
+    vsStyleIntProjects();
+    const tb = document.querySelector('#intTable tbody'); if (!tb || tb.dataset.vsWatch) return;
+    tb.dataset.vsWatch = '1'; let t = null;
+    new MutationObserver(() => { clearTimeout(t); t = setTimeout(vsStyleIntProjects, 30); }).observe(tb, { childList: true });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+
+// ── Exterior tab: colour each project like the Amenities tab ──
+(function vsExtColorCss() {
+  if (document.getElementById('vsExtColorCss')) return;
+  const st = document.createElement('style'); st.id = 'vsExtColorCss';
+  st.textContent = '.vs-ext-name::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--vs-c);margin-right:8px;vertical-align:1px;flex-shrink:0}'
+    + '.vs-ext-row>td:first-child{border-left:4px solid var(--vs-c)!important}'
+    + '.vs-ext-row{background:linear-gradient(90deg,var(--vs-t) 0%,transparent 70%)}'
+    + '.vs-ext-row:hover{background:linear-gradient(90deg,var(--vs-h) 0%,transparent 80%)}';
+  document.head.appendChild(st);
+})();
+function vsStyleExtProjects() {
+  const P = (typeof VS_INT_COLORS !== 'undefined') ? VS_INT_COLORS : ['#38bdf8', '#a78bfa', '#34d399', '#fbbf24', '#f472b6', '#22d3ee', '#818cf8', '#fb923c'];
+  const key = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const nameOf = td => { if (!td) return ''; const d = td.querySelector('div'); return (td.firstChild && td.firstChild.nodeType === 3 && td.firstChild.textContent.trim()) ? td.firstChild.textContent.trim() : (d ? d.textContent.trim() : td.textContent.trim()); };
+  const map = {}; let n = 0;
+  const paint = (tr, color) => {
+    tr.classList.add('vs-ext-row');
+    tr.style.setProperty('--vs-c', color); tr.style.setProperty('--vs-t', color + '12'); tr.style.setProperty('--vs-h', color + '22');
+    const td = tr.cells[0]; if (!td) return;
+    const d = td.querySelector('div');
+    const isText = td.firstChild && td.firstChild.nodeType === 3 && td.firstChild.textContent.trim();
+    if (isText) { td.classList.add('vs-ext-name'); td.style.fontWeight = '700'; }
+    else if (d) { d.classList.add('vs-ext-name'); d.style.fontWeight = '700'; }
+  };
+  const main = document.querySelectorAll('#extTable tbody tr');
+  main.forEach(tr => { if (!tr.cells || tr.cells.length < 2) return; const k = key(nameOf(tr.cells[0])); if (!(k in map)) map[k] = P[n++ % P.length]; paint(tr, map[k]); });
+  ['#arbazTable', '#vikasTable'].forEach(sel => {
+    let i = 0;
+    document.querySelectorAll(sel + ' tbody tr').forEach(tr => { if (!tr.cells || tr.cells.length < 2) return; const k = key(nameOf(tr.cells[0])); const c = map[k] || P[i % P.length]; i++; paint(tr, c); });
+  });
+}
+(function vsWatchExtTables() {
+  const start = () => {
+    vsStyleExtProjects();
+    let t = null; const again = () => { clearTimeout(t); t = setTimeout(vsStyleExtProjects, 30); };
+    ['#extTable tbody', '#arbazTable tbody', '#vikasTable tbody'].forEach(sel => {
+      const tb = document.querySelector(sel); if (!tb || tb.dataset.vsWatch) return;
+      tb.dataset.vsWatch = '1'; new MutationObserver(again).observe(tb, { childList: true });
+    });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
 
 </script>
 
